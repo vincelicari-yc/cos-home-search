@@ -111,6 +111,36 @@ window.COSDrop = (function () {
     return { url: u.href, site: host, id: null, address: null, isListing: false };
   }
 
+  /** Pull every house out of a pasted blob. Handles one URL, several URLs, a bare address, or a
+   *  whole listing copy-pasted off Zillow with the link buried in it. */
+  function parseMany(raw) {
+    const text = String(raw || '').trim();
+    if (!text) return [];
+
+    const urls = text.match(/https?:\/\/[^\s"'<>)\]]+/g) || [];
+    if (urls.length) {
+      const seen = new Set();
+      return urls
+        .map(u => u.replace(/[.,;)]+$/, ''))
+        .filter(u => !seen.has(u) && seen.add(u))
+        .map(u => parseListing(u))
+        .filter(Boolean);
+    }
+
+    // No links at all. Look for something that reads like a street address, line by line, so a
+    // pasted listing body still gives us something to work with.
+    for (const line of text.split(/[\n\r]+/).map(s => s.trim()).filter(Boolean)) {
+      const m = line.match(/\d{1,6}\s+[A-Za-z0-9'.\- ]{3,60}?(?:,\s*[A-Za-z .'-]{2,30})?(?:,?\s*[A-Z]{2})?\s*\d{5}?/);
+      const cand = (m && m[0].trim()) || (/^\d+\s+\S+/.test(line) ? line : null);
+      if (cand) {
+        const one = parseListing(cand);
+        if (one) return [one];
+      }
+    }
+    const fallback = parseListing(text.split(/[\n\r]+/)[0]);
+    return fallback ? [fallback] : [];
+  }
+
   /* ---------------- queue storage ---------------- */
 
   let mode = 'shared';   // becomes 'local' if tools/serve.py answers
@@ -188,17 +218,20 @@ window.COSDrop = (function () {
       c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
     root.innerHTML = `
-      <div class="dz" id="dz" tabindex="0" role="button"
-           aria-label="Drop a Zillow or Redfin link here to add a house">
-        <div class="dz-icon" aria-hidden="true">&#8681;</div>
-        <p class="dz-main">Drag a <strong>Zillow</strong> or <strong>Redfin</strong> link here</p>
-        <p class="dz-sub">…or paste it in the box below. A plain address works too.</p>
+      <div class="dzbox">
+        <label class="dz-step" for="dz-input">Paste the house here</label>
+        <textarea id="dz-input" class="dz-ta" rows="3" spellcheck="false"
+          placeholder="Paste a Zillow or Redfin link — or the address, or the whole listing. More than one is fine, one per line."></textarea>
+
+        <div class="dz-or"><span>or</span></div>
+
+        <div class="dz" id="dz" tabindex="0" role="button"
+             aria-label="Drag a listing link here to fill the box above">
+          <span class="dz-dragtext">Drag a link onto here <span class="dz-icon" aria-hidden="true">&#8681;</span></span>
+        </div>
+
+        <button type="button" class="btn dz-go" id="dz-send">Send to Claude</button>
       </div>
-      <form class="dz-form" id="dz-form">
-        <input type="url" id="dz-input" inputmode="url" autocomplete="off" spellcheck="false"
-               placeholder="Paste a Zillow or Redfin link…" aria-label="Listing link or address">
-        <button type="submit" class="btn" id="dz-send">Send</button>
-      </form>
       <p class="dz-mode" id="dz-mode"></p>
       <div id="dz-queue"></div>`;
 
@@ -209,11 +242,12 @@ window.COSDrop = (function () {
 
     function renderMode() {
       modeEl.innerHTML = mode === 'local'
-        ? `<span class="dz-badge dz-badge-live">Connected</span> Saved straight to
-           <code>data/queue.json</code>. If Claude's watcher is running these get picked up
-           automatically and the score appears here; otherwise just say “process the queue”.`
-        : `<span class="dz-badge">Shared page</span> This page can't score a house on its own —
-           Zillow blocks browsers. Queue them up here, then copy the request and send it to Claude.`;
+        ? `<span class="dz-badge dz-badge-live">Connected to Claude</span>
+           Paste a link and hit <strong>Send</strong> — that's all. The score appears above on its
+           own once Claude has looked at it.`
+        : `<span class="dz-badge">Sharing mode</span> Hit <strong>Send</strong> to add it to the
+           list, then <strong>Copy request for Claude</strong> and paste that into your chat with
+           Claude. This page has no server behind it, so it can't reach Claude by itself.`;
     }
 
     function render() {
@@ -225,9 +259,11 @@ window.COSDrop = (function () {
       listEl.innerHTML = `
         ${flash ? `<p class="dz-flash">${esc(flash)}</p>` : ''}
         <div class="dz-head">
-          <h4>Waiting to be analysed <span class="dz-count">${queue.length}</span></h4>
+          <h4>${mode === 'local' ? 'Sent to Claude' : 'Ready to send'}
+            <span class="dz-count">${queue.length}</span></h4>
           <div class="dz-actions">
-            <button type="button" class="btn" id="dz-copy">Copy request for Claude</button>
+            ${mode === 'local' ? '' :
+              '<button type="button" class="btn" id="dz-copy">Copy request for Claude</button>'}
             <button type="button" class="btn btn-ghost" id="dz-clear">Clear</button>
           </div>
         </div>
@@ -255,7 +291,7 @@ window.COSDrop = (function () {
         render();
       }));
       const copy = listEl.querySelector('#dz-copy');
-      copy.addEventListener('click', async () => {
+      if (copy) copy.addEventListener('click', async () => {
         const text = requestText();
         try {
           await navigator.clipboard.writeText(text);
@@ -282,40 +318,60 @@ window.COSDrop = (function () {
     }
 
     async function accept(raw) {
-      const parsed = parseListing(raw);
-      if (!parsed) {
-        flash = "That didn't look like a listing link or an address.";
+      const found = parseMany(raw);
+      if (!found.length) {
+        flash = "Couldn't find a listing link or an address in that. Paste the Zillow URL, or just the street address.";
         zone.classList.add('dz-bad');
-        setTimeout(() => zone.classList.remove('dz-bad'), 900);
-        return render();
+        setTimeout(() => zone.classList.remove('dz-bad'), 1000);
+        render();
+        return 0;
       }
-      if (parsed.isListing === false && parsed.site !== 'address') {
-        flash = `That's a ${parsed.site} link, not a Zillow or Redfin listing — queued anyway so Claude can look.`;
+
+      let added = 0, dupes = 0;
+      for (const entry of found) {
+        const res = await add(entry);
+        if (res && res.duplicate) dupes++; else added++;
+      }
+
+      const names = found.map(f => f.address).filter(Boolean);
+      if (!added) {
+        flash = dupes === 1 ? 'Already sent — it\'s in the list below.'
+                            : `All ${dupes} of those were already sent.`;
+      } else if (mode === 'local') {
+        flash = added === 1
+          ? `Sent. ${names[0] || 'That house'} is with Claude now — nothing else to do.`
+          : `Sent ${added} houses to Claude — nothing else to do.`;
       } else {
-        flash = null;
-      }
-      const res = await add(parsed);
-      if (res.duplicate) flash = 'Already in the queue.';
-      else if (!flash) {
-        flash = parsed.address
-          ? `Added ${parsed.address}.`
-          : 'Added — Claude will pull the address from the link.';
+        flash = added === 1
+          ? `Added ${names[0] || 'that house'}. Now hit “Copy request for Claude” and paste it into your chat.`
+          : `Added ${added} houses. Now hit “Copy request for Claude” and paste it into your chat.`;
       }
       zone.classList.add('dz-ok');
       setTimeout(() => zone.classList.remove('dz-ok'), 900);
       render();
       startPolling();
+      return added;
     }
 
-    const form = root.querySelector('#dz-form');
     const input = root.querySelector('#dz-input');
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+    const sendBtn = root.querySelector('#dz-send');
+
+    async function send() {
       const v = input.value.trim();
-      if (!v) return;
-      input.value = '';
-      await accept(v);
+      if (!v) { input.focus(); return; }
+      sendBtn.disabled = true;
+      const label = sendBtn.textContent;
+      sendBtn.textContent = 'Sending…';
+      const n = await accept(v);
+      if (n > 0) input.value = '';
+      sendBtn.disabled = false;
+      sendBtn.textContent = label;
       startPolling();
+    }
+    sendBtn.addEventListener('click', send);
+    // Cmd/Ctrl-Enter sends without reaching for the mouse.
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); send(); }
     });
 
     /* While something is queued or mid-analysis, poll so the page reflects progress on its own.
@@ -349,25 +405,31 @@ window.COSDrop = (function () {
       zone.classList.add('dz-over');
     }));
     ['dragleave', 'dragend'].forEach(ev => zone.addEventListener(ev, () => zone.classList.remove('dz-over')));
+    /* A drop FILLS the box rather than sending immediately, so you always see what's about to
+     * go and can add more before hitting Send. */
+    function fill(text) {
+      const v = String(text || '').trim();
+      if (!v) return;
+      input.value = input.value.trim() ? input.value.trim() + '\n' + v : v;
+      input.focus();
+      zone.classList.add('dz-ok');
+      setTimeout(() => zone.classList.remove('dz-ok'), 700);
+      flash = 'Dropped in — hit Send to Claude when you\'re ready.';
+      render();
+    }
     zone.addEventListener('drop', e => {
       e.preventDefault();
       zone.classList.remove('dz-over');
       const dt = e.dataTransfer;
-      accept(dt.getData('text/uri-list') || dt.getData('text/plain') || dt.getData('text'));
+      fill(dt.getData('text/uri-list') || dt.getData('text/plain') || dt.getData('text'));
     });
-
-    // Click to focus, then paste. Also accepts a paste anywhere while the zone has focus.
-    zone.addEventListener('click', () => zone.focus());
-    zone.addEventListener('paste', e => {
-      e.preventDefault();
-      accept((e.clipboardData || window.clipboardData).getData('text'));
-    });
+    zone.addEventListener('click', () => input.focus());
     zone.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zone.focus(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.focus(); }
     });
 
     detectServer().then(() => { render(); if (outstanding()) startPolling(); });
   }
 
-  return { init, parseListing, addressFromSlug, requestText, _queue: () => queue };
+  return { init, parseListing, parseMany, addressFromSlug, requestText, _queue: () => queue };
 })();
