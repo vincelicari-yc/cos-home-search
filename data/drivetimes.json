@@ -1,0 +1,84 @@
+{
+  "anchor": "YWAM Colorado Springs / Kairos Coffee",
+  "maxMinutes": 10,
+  "neighborhoods": [
+    {
+      "name": "Pope's Bluff",
+      "minutes": 3.0,
+      "miles": 0.7,
+      "inRadius": true
+    },
+    {
+      "name": "Holland Park",
+      "minutes": 3.0,
+      "miles": 1.0,
+      "inRadius": true
+    },
+    {
+      "name": "Vista Grande",
+      "minutes": 3.3,
+      "miles": 1.3,
+      "inRadius": true
+    },
+    {
+      "name": "University Park",
+      "minutes": 4.7,
+      "miles": 1.8,
+      "inRadius": true
+    },
+    {
+      "name": "Mountain Shadows",
+      "minutes": 6.6,
+      "miles": 2.6,
+      "inRadius": true
+    },
+    {
+      "name": "Pleasant Valley",
+      "minutes": 7.7,
+      "miles": 3.7,
+      "inRadius": true
+    },
+    {
+      "name": "Kissing Camels",
+      "minutes": 9.0,
+      "miles": 3.6,
+      "inRadius": true
+    },
+    {
+      "name": "Rockrimmon",
+      "minutes": 11.9,
+      "miles": 4.6,
+      "inRadius": false
+    },
+    {
+      "name": "Pinecliff",
+      "minutes": 8.4,
+      "miles": 3.7,
+      "inRadius": true
+    },
+    {
+      "name": "Peregrine",
+      "minutes": 11.2,
+      "miles": 4.5,
+      "inRadius": false
+    },
+    {
+      "name": "Old Colorado City",
+      "minutes": 10.0,
+      "miles": 4.8,
+      "inRadius": true
+    },
+    {
+      "name": "Woodmen Valley",
+      "minutes": 9.2,
+      "miles": 5.1,
+      "inRadius": true
+    },
+    {
+      "name": "Cedar Heights",
+      "minutes": 16.7,
+      "miles": 7.0,
+      "inRadius": false
+    }
+  ]
+}

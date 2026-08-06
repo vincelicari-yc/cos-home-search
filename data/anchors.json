@@ -1,0 +1,45 @@
+{
+  "primary": {
+    "id": "ywam",
+    "label": "YWAM Colorado Springs / Kairos Coffee",
+    "address": "505 Popes Bluff Trail, Colorado Springs, CO 80907",
+    "lat": 38.8986334,
+    "lon": -104.8334325,
+    "note": "The anchor. YWAM campus and Kairos Coffee House share this address. All drive times are measured from here.",
+    "maxDriveMinutes": 10
+  },
+  "secondary": [
+    {
+      "id": "innout",
+      "label": "In-N-Out Burger",
+      "address": "495 W Garden of the Gods Rd",
+      "lat": 38.8964017,
+      "lon": -104.8317757,
+      "note": "0.2 mi south of the anchor — the landmark for the Garden of the Gods Rd corridor."
+    },
+    {
+      "id": "gotg",
+      "label": "Garden of the Gods Park",
+      "address": "1805 N 30th St",
+      "lat": 38.8743771,
+      "lon": -104.8824095,
+      "note": "Recreation and trails."
+    }
+  ],
+  "referenceNeighborhoods": [
+    { "name": "Pope's Bluff",        "lat": 38.8975, "lon": -104.8290, "expectation": "inside"  },
+    { "name": "Holland Park",        "lat": 38.8920, "lon": -104.8420, "expectation": "inside"  },
+    { "name": "Vista Grande",        "lat": 38.9060, "lon": -104.8240, "expectation": "inside"  },
+    { "name": "University Park",     "lat": 38.9010, "lon": -104.8130, "expectation": "inside"  },
+    { "name": "Mountain Shadows",    "lat": 38.9010, "lon": -104.8720, "expectation": "inside"  },
+    { "name": "Pleasant Valley",     "lat": 38.8680, "lon": -104.8660, "expectation": "inside"  },
+    { "name": "Kissing Camels",      "lat": 38.8880, "lon": -104.8560, "expectation": "inside"  },
+    { "name": "Rockrimmon",          "lat": 38.9330, "lon": -104.8570, "expectation": "edge"    },
+    { "name": "Pinecliff",           "lat": 38.9180, "lon": -104.8750, "expectation": "edge"    },
+    { "name": "Peregrine",           "lat": 38.9270, "lon": -104.8830, "expectation": "edge"    },
+    { "name": "Old Colorado City",   "lat": 38.8530, "lon": -104.8600, "expectation": "edge"    },
+    { "name": "Woodmen Valley",      "lat": 38.9420, "lon": -104.8420, "expectation": "edge"    },
+    { "name": "Cedar Heights",       "lat": 38.8690, "lon": -104.8930, "expectation": "edge"    }
+  ],
+  "_comment": "referenceNeighborhoods are sanity checks for the 10-minute isochrone, not listings. Drive times are computed by tools/intake.py via OSRM and cached into data/drivetimes.json."
+}

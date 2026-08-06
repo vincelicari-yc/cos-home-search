@@ -1,0 +1,58 @@
+{
+  "schema": {
+    "_doc": "Reference only — not a real home. Every field a real entry may use, with its meaning. Copy this shape, drop the _doc keys. Use null for anything unverified; NEVER guess a number.",
+    "id": "kebab-case-slug-from-street",
+    "address": "1234 Example St, Colorado Springs, CO 80907",
+    "status": "active | rejected | toured | offer | passed | archived",
+    "rejectedReason": "null unless status is rejected — which hard parameter failed",
+    "listing": {
+      "price": 575000,
+      "beds": 4,
+      "baths": 3,
+      "sqft": 2400,
+      "lotSqft": 9000,
+      "yearBuilt": 1978,
+      "style": "split-level | tri-level | ranch | 2-story | bi-level",
+      "hoaMonthly": 0,
+      "daysOnMarket": 12,
+      "zillowUrl": null,
+      "redfinUrl": null,
+      "mlsNumber": null,
+      "sourceOfTruth": "scraped | screenshot | manual-entry",
+      "fetchedAt": "2026-08-06"
+    },
+    "geo": {
+      "lat": 38.8986,
+      "lon": -104.8334,
+      "neighborhood": "Pope's Bluff",
+      "driveMinutesToAnchor": 6.2,
+      "driveMilesToAnchor": 1.8,
+      "routedAt": "2026-08-06"
+    },
+    "schools": {
+      "_doc": "Reference only — never affects score. Homeschool.",
+      "district": "D-11 | D-20",
+      "elementary": null,
+      "middle": null,
+      "high": null
+    },
+    "scores": {
+      "_doc": "Keys match criterion ids in criteria/90-scoring-rubric.md. 0-5, or null for unknown. Every score needs a why.",
+      "example-criterion": { "score": 4, "why": "Roof replaced 2021 per listing remarks [T01]" }
+    },
+    "totalScore": null,
+    "flags": {
+      "_doc": "Hard-won red flags. Severity drives the color on the site.",
+      "example": { "severity": "critical | warning | note", "text": "Plain-language description" }
+    },
+    "photos": [
+      { "url": "site/assets/homes/example-st-01.jpg", "caption": "Front elevation", "credit": "Zillow listing" }
+    ],
+    "familyNotes": [],
+    "openQuestions": [
+      "Roof age not stated in listing — ask agent"
+    ],
+    "addedAt": "2026-08-06"
+  },
+  "homes": []
+}

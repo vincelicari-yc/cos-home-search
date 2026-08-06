@@ -1,0 +1,16 @@
+{
+  "_doc": "Mirrors criteria/90-scoring-rubric.md. Keep the two in sync — this file is what the site uses to compute totals. Weights sum to 100.",
+  "version": "2026-08-06-baseline",
+  "criteria": [
+    { "id": "foundation", "label": "Structure & foundation",        "weight": 18 },
+    { "id": "roof",       "label": "Roof & hail exposure",          "weight": 13 },
+    { "id": "systems",    "label": "HVAC / electrical / plumbing",  "weight": 12 },
+    { "id": "layout",     "label": "Layout fit for the family",     "weight": 12 },
+    { "id": "lot",        "label": "Lot, drainage & grading",       "weight": 10 },
+    { "id": "location",   "label": "Location quality in radius",    "weight": 10 },
+    { "id": "value",      "label": "Price vs. value & reserve",     "weight": 9  },
+    { "id": "wildfire",   "label": "Wildfire & insurability",       "weight": 8  },
+    { "id": "radon",      "label": "Radon & environmental",         "weight": 5  },
+    { "id": "hoa",        "label": "HOA / metro district burden",   "weight": 3  }
+  ]
+}

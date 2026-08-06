@@ -1,0 +1,22 @@
+# Raw YouTube transcripts stay local.
+#
+# Two reasons. First, verbatim transcripts are the video creators' copyrighted work, and this
+# repo is public — republishing them wholesale is not ours to do. Second, they're bulky and
+# add nothing for the family, who read the distilled criteria instead.
+#
+# criteria/ IS committed: those are our own summaries and judgments, written in our words.
+transcripts/*.md
+!transcripts/README.md
+
+# Anything containing money or identity. The repo is public.
+**/pre-approval*
+**/financials*
+**/*ssn*
+private/
+
+.DS_Store
+*.log
+__pycache__/
+.venv/
+venv/
+node_modules/

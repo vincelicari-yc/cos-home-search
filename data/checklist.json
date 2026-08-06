@@ -1,0 +1,130 @@
+{
+  "_doc": "Walk-the-house checklist, generated from criteria/. Designed for a phone screen while standing in a house. Regenerate when criteria change. Progress is saved per-home in the browser.",
+  "version": "2026-08-06-baseline",
+  "sections": [
+    {
+      "id": "foundation",
+      "title": "Foundation & structure",
+      "weight": 18,
+      "intro": "The big one in Colorado Springs. Expansive clay soil moves foundations. Give this 10 real minutes.",
+      "items": [
+        { "text": "Walk the full exterior perimeter. Any stair-step cracks in foundation or brick, especially at corners?", "severity": "critical" },
+        { "text": "Drop a marble or a ball in each level. Does it roll? Which direction?", "severity": "critical" },
+        { "text": "Open and close every interior door. Any sticking, or gaps that taper?", "severity": "warning" },
+        { "text": "Look above every door and window frame for cracks radiating diagonally.", "severity": "warning" },
+        { "text": "In the basement: cracks in the slab, especially under interior walls? Any heave?", "severity": "critical" },
+        { "text": "Any sign of prior repair — piers, wall anchors, patched cracks, fresh paint on one wall only?", "severity": "warning" },
+        { "text": "ASK: Has a structural engineer ever looked at this house? Any soils report?", "severity": "critical" }
+      ]
+    },
+    {
+      "id": "roof",
+      "title": "Roof & hail",
+      "weight": 13,
+      "intro": "Roofs are consumables here. Insurance carriers already know it.",
+      "items": [
+        { "text": "ASK: Roof age, and is there a permit for the replacement?", "severity": "critical" },
+        { "text": "ASK: Class 4 impact-resistant shingles? (Real premium discount if yes.)", "severity": "warning" },
+        { "text": "Check gutters, downspouts, vents, and flashing for hail dents — soft metal tells the truth even when shingles look fine.", "severity": "warning" },
+        { "text": "Look at the AC condenser fins for hail bruising.", "severity": "note" },
+        { "text": "From the ground, look for more than one shingle layer at the edges.", "severity": "note" },
+        { "text": "ASK: Any hail claims — paid or denied? Which carrier? What's the wind/hail deductible specifically?", "severity": "critical" }
+      ]
+    },
+    {
+      "id": "drainage",
+      "title": "Drainage & grading",
+      "weight": 10,
+      "intro": "Nearly every foundation problem here starts as a water problem. Check this right after the foundation.",
+      "items": [
+        { "text": "Does the ground slope AWAY from the house on all four sides?", "severity": "critical" },
+        { "text": "Do downspouts discharge well clear of the foundation, or dump at the wall?", "severity": "warning" },
+        { "text": "Do window wells have drains? Any staining showing they've held water?", "severity": "warning" },
+        { "text": "Is an uphill neighbor's water routed toward this lot?", "severity": "warning" },
+        { "text": "Are sprinkler heads spraying the foundation or siding?", "severity": "note" },
+        { "text": "Any large trees within ~15 ft of the foundation?", "severity": "note" }
+      ]
+    },
+    {
+      "id": "systems",
+      "title": "Systems — the 1970s–80s cluster",
+      "weight": 12,
+      "intro": "Our budget lands in this era. These specific items can make a house uninsurable.",
+      "items": [
+        { "text": "Open the electrical panel. Brand? Federal Pacific or Zinsco = full replacement.", "severity": "critical" },
+        { "text": "Aluminum branch wiring? (Look for stamped ALUMINUM on cable jackets. ~1965–75 builds.)", "severity": "critical" },
+        { "text": "Supply pipe material — gray or blue plastic is polybutylene, often uninsurable.", "severity": "critical" },
+        { "text": "Amp service — 100A at capacity, or 200A?", "severity": "warning" },
+        { "text": "Furnace and water heater age — read the labels, photograph them.", "severity": "warning" },
+        { "text": "Water pressure — run an upstairs shower and flush a toilet at the same time.", "severity": "note" },
+        { "text": "ASK: Sewer lateral material and age. Scope it regardless — pre-1980 clay and cast iron fail.", "severity": "critical" }
+      ]
+    },
+    {
+      "id": "radon",
+      "title": "Radon",
+      "weight": 5,
+      "intro": "El Paso County is EPA Zone 1 — highest tier. Elevated readings are normal here, and basements are where bedrooms go.",
+      "items": [
+        { "text": "Is there a mitigation system? (Sealed sump, vent pipe, inline fan running to the roof.)", "severity": "warning" },
+        { "text": "ASK: Has it been tested? What was the number?", "severity": "warning" },
+        { "text": "If mitigated, ASK for the post-mitigation test result.", "severity": "note" }
+      ]
+    },
+    {
+      "id": "wildfire",
+      "title": "Wildfire & insurance",
+      "weight": 8,
+      "intro": "Waldo Canyon burned into Mountain Shadows in 2012 — inside our radius. An uninsurable house is an unbuyable house.",
+      "items": [
+        { "text": "How close is the foothills interface and continuous vegetation?", "severity": "warning" },
+        { "text": "Is there defensible space, or shrubs right against the siding?", "severity": "warning" },
+        { "text": "Deck and roof materials — combustible or not?", "severity": "note" },
+        { "text": "How many ways out of the neighborhood?", "severity": "note" },
+        { "text": "DO THIS BEFORE THE INSPECTION DEADLINE: get a real insurance quote for this address.", "severity": "critical" }
+      ]
+    },
+    {
+      "id": "layout",
+      "title": "Layout & fit",
+      "weight": 12,
+      "intro": "4 bed / 3 bath is the hard minimum. This section is about whether it actually works.",
+      "items": [
+        { "text": "Count 4 real bedrooms. Does any basement bedroom have a proper egress window?", "severity": "critical" },
+        { "text": "Are all 3 baths usefully placed, or is one stranded?", "severity": "warning" },
+        { "text": "Where do bedrooms sit relative to each other across levels?", "severity": "note" },
+        { "text": "Is there room to host people?", "severity": "note" },
+        { "text": "Storage — closets, garage, basement.", "severity": "note" },
+        { "text": "Cell signal — check your bars in the basement and back bedrooms.", "severity": "note" }
+      ]
+    },
+    {
+      "id": "location",
+      "title": "Location & the daily reality",
+      "weight": 10,
+      "intro": "Drive time is already filtered to 10 minutes. This is about living there.",
+      "items": [
+        { "text": "Stand outside and just listen for a minute. Arterial or highway noise?", "severity": "warning" },
+        { "text": "Which way does the driveway face? North-facing holds ice for weeks — a real daily issue, worse on a slope.", "severity": "warning" },
+        { "text": "Which rooms get afternoon west sun? At altitude that's brutal in summer.", "severity": "note" },
+        { "text": "Backyard privacy and sight lines from neighbors.", "severity": "note" },
+        { "text": "Mountain views — and could a future build take them?", "severity": "note" },
+        { "text": "Drive the actual route to YWAM at the hour you'd really drive it.", "severity": "warning" }
+      ]
+    },
+    {
+      "id": "money",
+      "title": "Money questions",
+      "weight": 12,
+      "intro": "Under $600k is the ceiling. Protect the repair reserve.",
+      "items": [
+        { "text": "ASK: 12 months of Colorado Springs Utilities bills — all four services on one bill, so it's a clean read on efficiency.", "severity": "warning" },
+        { "text": "ASK: Is there a metro district? These add to the mill levy and are NOT an HOA, so they hide easily.", "severity": "critical" },
+        { "text": "ASK: HOA dues, reserve health, and any pending special assessment.", "severity": "warning" },
+        { "text": "Current property tax and mill levy for this exact parcel.", "severity": "warning" },
+        { "text": "City water/sewer, or well and septic? (More likely at the Cedar Heights / Woodmen Valley edges.)", "severity": "warning" },
+        { "text": "Add up what this house needs — roof, sewer, radon, drainage — before deciding the offer.", "severity": "critical" }
+      ]
+    }
+  ]
+}

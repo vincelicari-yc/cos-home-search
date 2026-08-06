@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Keep this out of search results. Paired with docs/robots.txt. -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+
+<title>Home Search — Colorado Springs</title>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">🏔️</span>
+      <div>
+        <h1>Home Search</h1>
+        <p class="brand-sub">Colorado Springs · 10 min from YWAM</p>
+      </div>
+    </div>
+    <button id="who-btn" class="who-btn" type="button" title="Set who you are">
+      <span id="who-label">Sign in</span>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- Search parameters, always visible so nobody forgets the rules -->
+  <section class="params" aria-label="Search parameters">
+    <div class="param"><span class="param-k">Budget</span><span class="param-v">Under $600k</span></div>
+    <div class="param"><span class="param-k">Size</span><span class="param-v">4 bed · 3 bath min</span></div>
+    <div class="param"><span class="param-k">Radius</span><span class="param-v">10 min drive max</span></div>
+    <div class="param"><span class="param-k">Anchor</span><span class="param-v">505 Popes Bluff Trl</span></div>
+  </section>
+
+  <div id="sync-banner" class="banner banner-warn" hidden></div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" role="tab" data-tab="homes">Homes <span id="count-homes" class="pill">0</span></button>
+    <button class="tab" role="tab" data-tab="map">Map</button>
+    <button class="tab" role="tab" data-tab="tour">Tour Checklist</button>
+    <button class="tab" role="tab" data-tab="area">The Area</button>
+  </nav>
+
+  <!-- ============ HOMES ============ -->
+  <section id="panel-homes" class="panel is-active" role="tabpanel">
+    <div class="toolbar">
+      <label class="ctl">
+        <span>Sort</span>
+        <select id="sort">
+          <option value="score">Best score</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+          <option value="drive">Closest to YWAM</option>
+          <option value="newest">Recently added</option>
+        </select>
+      </label>
+      <label class="ctl">
+        <span>Show</span>
+        <select id="filter">
+          <option value="live">Still in play</option>
+          <option value="all">Everything</option>
+          <option value="toured">Toured</option>
+          <option value="rejected">Rejected only</option>
+        </select>
+      </label>
+    </div>
+    <div id="homes-list" class="homes"></div>
+  </section>
+
+  <!-- ============ MAP ============ -->
+  <section id="panel-map" class="panel" role="tabpanel">
+    <div id="map"></div>
+    <div class="legend">
+      <span><i class="dot dot-anchor"></i> YWAM anchor</span>
+      <span><i class="dot dot-good"></i> Score 80+</span>
+      <span><i class="dot dot-ok"></i> 65–79</span>
+      <span><i class="dot dot-meh"></i> Under 65</span>
+      <span><i class="dot dot-in"></i> In radius</span>
+      <span><i class="dot dot-out"></i> Too far</span>
+    </div>
+  </section>
+
+  <!-- ============ TOUR CHECKLIST ============ -->
+  <section id="panel-tour" class="panel" role="tabpanel">
+    <div class="tour-head">
+      <h2>Walk-the-house checklist</h2>
+      <p class="muted">Built for a phone while you're standing in the house. Pick which home you're
+      touring and your checkmarks save to this device.</p>
+      <label class="ctl">
+        <span>Touring</span>
+        <select id="tour-home"><option value="">— general / no home selected —</option></select>
+      </label>
+      <div id="tour-progress" class="tour-progress"></div>
+    </div>
+    <div id="checklist"></div>
+  </section>
+
+  <!-- ============ THE AREA ============ -->
+  <section id="panel-area" class="panel" role="tabpanel">
+    <h2>What's actually within 10 minutes</h2>
+    <p class="muted">Measured driving times from 505 Popes Bluff Trail. These are free-flow
+    estimates with no traffic — at 8am or 5pm add roughly 15–25% on this corridor.</p>
+    <div id="area-table"></div>
+    <div class="note-card">
+      <h3>Before you make an offer</h3>
+      <p>Drive the real route at the hour you'd really drive it. No map tool replaces that.
+      Anything measured over about 8.5 minutes is at genuine risk of breaking the 10-minute
+      rule in real traffic.</p>
+    </div>
+  </section>
+
+</div>
+
+<footer class="foot wrap">
+  <p>Private family page · not indexed by search engines · last updated <span id="built"></span></p>
+</footer>
+
+<!-- Identity dialog -->
+<dialog id="who-dialog">
+  <form method="dialog">
+    <h2>Who are you?</h2>
+    <p class="muted">First name only — this page is public to anyone with the link, so we keep
+    last names off it. Saved on this device so you only do this once.</p>
+    <input id="who-input" type="text" placeholder="e.g. Vince" maxlength="20" autocomplete="off">
+    <div class="dialog-actions">
+      <button value="cancel" class="btn btn-ghost">Cancel</button>
+      <button id="who-save" value="save" class="btn">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

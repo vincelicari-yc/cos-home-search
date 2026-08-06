@@ -1,0 +1,4 @@
+# This page is for one family's private home search. Please don't index it.
+# Reinforced by <meta name="robots" content="noindex, nofollow"> on every page.
+User-agent: *
+Disallow: /
