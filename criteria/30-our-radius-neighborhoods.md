@@ -51,6 +51,12 @@ homes hold price better when the market cools. See the schools note at the botto
 Drive times measured via OSRM (`data/drivetimes.json`), free-flow with no traffic — add 15–25%
 at rush hour.
 
+> **Correction, 2026-08-06.** An earlier version of this file said Rockrimmon was outside the
+> radius. That came from one reference point in northwest Rockrimmon (11.9 min) and was wrong at
+> the address level — southeast Rockrimmon measures 6.6 minutes. **Rockrimmon is in play, and it
+> carries the worst risk combination in our whole search area** (see below). Always route the
+> specific address.
+
 | Neighborhood | Min | What the transcripts say | Verdict |
 | --- | --- | --- | --- |
 | Pope's Bluff | 3.0 | Not covered | Prime — closest to anchor |
@@ -63,8 +69,10 @@ at rush hour.
 | Kissing Camels | 9.0 | Not covered | Likely over budget |
 | Woodmen Valley | 9.2 | Not covered; verify well/septic | Verify utilities |
 | Old Colorado City | 10.0 | West-side mountain-town character `[T07]`; Fountain Creek/Hwy 24 flood corridor `[T04]` | Tight on time, check flood |
+| **Rockrimmon (SE)** | **6.6** | **Named soil AND wildfire hot spot** `[T04]` `[T05]` `[T06]` — but measurably in range | **In — high risk, see below** |
+| Rockrimmon (central) | 9.4 | same risk profile | In, tight in traffic |
 | ~~Peregrine~~ | 11.2 | Starts "high sixes," needs updating, WUI `[T03]` `[T04]` `[T05]` | **Out** — radius *and* budget |
-| ~~Rockrimmon~~ | 11.9 | Foundation/soil hot spot, WUI, FEMA surprise `[T04]` `[T05]` `[T06]` | **Out** — radius |
+| ~~Rockrimmon (NW)~~ | 11.9 | Foundation/soil hot spot, WUI, FEMA surprise `[T04]` `[T05]` `[T06]` | **Out** — radius |
 | ~~Cedar Heights~~ | 16.7 | WUI `[T04]` | **Out** — radius |
 
 ---
@@ -158,3 +166,27 @@ neighborhood:
   D-12 at all — it's D-2 and parts of D-11 `[T06]`. Verify the exact address, and call the school.
 - **Individual school ratings vary sharply within a district.** Mountain Shadows is D-11, yet
   Chipeta Elementary rates 9/10 `[T06]`. Don't judge a specific school by its district average.
+
+
+---
+
+## Rockrimmon: in the radius, and the worst risk stack we've found
+
+Corrected into the search 2026-08-06 after 6520 Hawkeye Cir measured 6.6 minutes. Southeast and
+central Rockrimmon are reachable; northwest is not. But being reachable doesn't make it safe —
+**Rockrimmon is the only place in our radius named as a hot spot for BOTH of the expensive risks:**
+
+- **Expansive soil.** `[T04]` names it explicitly: *"If you're looking at homes in Rockrimmon,
+  Broadmoor Bluffs, or the Southwest area by the foothills, this is especially relevant, because
+  the combination of steep terrain, the clay, that heavy soil, and proximity to the mountains
+  creates a condition where foundation distress is not unusual — it's actually pretty common."*
+- **Wildfire insurance.** `[T05]` lists Rockrimmon among the wildfire-risk areas where premiums
+  commonly run to **$15,000/yr**. `[T04]` names "parts of Rockrimmon" as wildland-urban interface.
+- **A specific cautionary tale.** `[T06]` describes a Rockrimmon buyer who skipped the FEMA map
+  conversation and **at underwriting was quoted more than double** what they'd budgeted, because
+  of the shifting ground beneath the property.
+
+**So the rule for any Rockrimmon address:** route it, then get the insurance quote and a
+structural engineer's opinion *before* touring. Both of those can end the conversation, and
+neither is visible in listing photos. A lot backing to open space raises the wildfire question
+further, however nice the view.

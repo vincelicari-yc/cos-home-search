@@ -41,19 +41,31 @@ Actual OSRM driving times from the anchor, computed 2026-08-06 via
 | Vista Grande | 3.3 | 1.3 | ✅ |
 | University Park | 4.7 | 1.8 | ✅ |
 | Mountain Shadows | 6.6 | 2.6 | ✅ |
+| **Rockrimmon (SE, Hawkeye Cir)** | **6.6** | 2.7 | ✅ |
 | Pleasant Valley | 7.7 | 3.7 | ✅ |
 | Pinecliff | 8.4 | 3.7 | ✅ |
 | Kissing Camels | 9.0 | 3.6 | ✅ |
 | Woodmen Valley | 9.2 | 5.1 | ✅ |
+| **Rockrimmon (central)** | **9.4** | 3.7 | ⚠️ tight in traffic |
 | Old Colorado City | 10.0 | 4.8 | ⚠️ right at the line |
-| **Peregrine** | **11.2** | 4.5 | ❌ out |
-| **Rockrimmon** | **11.9** | 4.6 | ❌ out |
-| **Cedar Heights** | **16.7** | 7.0 | ❌ out |
+| **Peregrine (south edge)** | **10.1** | 4.2 | ❌ just out |
+| **Rockrimmon (NW)** | **11.9** | 4.6 | ❌ out |
+| Peregrine (main) | 11.2 | 4.5 | ❌ out |
+| Cedar Heights | 16.7 | 7.0 | ❌ out |
 
-Two corrections to my initial assumptions: **Rockrimmon and Peregrine are both outside the
-10-minute radius**, and Cedar Heights is far outside — the gated access and winding approach
-cost far more time than the 7 miles suggest. Pinecliff, which I expected to be marginal, comes
-in comfortably at 8.4.
+> **Corrected 2026-08-06 — never treat a neighbourhood as uniform.** I originally wrote that
+> "Rockrimmon is outside the radius," based on a single reference point in northwest Rockrimmon
+> that measured 11.9 minutes. **That was wrong at the address level.** A real listing at
+> 6520 Hawkeye Cir, in southeast Rockrimmon, measures **6.6 minutes** — comfortably inside.
+> Re-measuring across the neighbourhood shows it straddles the line: **southeast 6.6, central
+> 9.4, northwest 11.9** — roughly five minutes end to end.
+>
+> **The rule: always run `./tools/intake.py` on the specific address.** A neighbourhood name is
+> not a drive time.
+
+Cedar Heights is genuinely far outside — the gated access and winding approach cost far more time
+than the 7 miles suggest. Peregrine is out at 11.2, and even its southern edge is 10.1. Pinecliff,
+which I expected to be marginal, comes in comfortably at 8.4.
 
 > **Important caveat on these numbers.** OSRM routes at free-flow speed limits with no traffic
 > model. Real driving at 8am or 5pm on Garden of the Gods Rd, Centennial, or 30th St will run
@@ -64,8 +76,10 @@ in comfortably at 8.4.
 > **Before making an offer, drive the route at the hour you'd actually drive it.** No routing
 > engine substitutes for that.
 
-**Outside — do not bother:** Briargate, Northgate, Broadmoor, Fountain, Falcon,
-Powers corridor, Monument, Black Forest. Plus Rockrimmon, Peregrine, and Cedar Heights per above.
+**Outside — do not bother:** Briargate, Northgate, Broadmoor, Fountain, Falcon, Powers corridor,
+Monument, Black Forest. Plus **Peregrine**, **Cedar Heights**, and **northwest Rockrimmon** per
+above — but note southeast and central Rockrimmon ARE in range, so route the address rather than
+dismissing the name.
 
 ## Budget reality check at $600k
 

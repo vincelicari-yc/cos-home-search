@@ -100,6 +100,8 @@ Anything failing one of these is rejected, not scored low:
 - **10 minutes** maximum drive from 505 Popes Bluff Trail
 
 Measured drive times for the surrounding neighborhoods are in
-[`criteria/00-search-parameters.md`](criteria/00-search-parameters.md). Notably **Rockrimmon
-(11.9 min), Peregrine (11.2), and Cedar Heights (16.7) are all outside** the radius, and those
-figures are free-flow with no traffic — add 15–25% at rush hour.
+[`criteria/00-search-parameters.md`](criteria/00-search-parameters.md). **Peregrine (11.2 min) and
+Cedar Heights (16.7) are outside.** Rockrimmon **straddles** the line — southeast measures 6.6,
+central 9.4, northwest 11.9 — so a neighbourhood name is never a drive time. Always route the
+specific address with `./tools/intake.py`. All figures are free-flow with no traffic; add 15–25%
+at rush hour.

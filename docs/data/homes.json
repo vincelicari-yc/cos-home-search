@@ -298,6 +298,204 @@
         "Get a contractor walkthrough for the real renovation number before the deadline"
       ],
       "addedAt": "2026-08-06"
+    },
+    {
+      "id": "6520-hawkeye-cir",
+      "address": "6520 Hawkeye Cir, Colorado Springs, CO 80919",
+      "status": "active",
+      "rejectedReason": null,
+      "verdict": "Genuinely the nicest house we've seen — Wolf and Thermador kitchen, cherry cabinets, Pikes Peak views off a wraparound deck, 5 beds, finished basement, cul-de-sac corner lot backing open space, and only $40/mo HOA. The problem isn't the house, it's the risk stack and the price position: Rockrimmon is named in the videos as BOTH a wildfire-insurance hotspot AND one of the worst areas for expansive-soil foundation damage, the roof is listed only as \"Other\" on a 1978 build, and at $599,900 you'd have $100 left against your ceiling. Worth pursuing — but get the insurance quote and a structural engineer before you fall for the view.",
+      "listing": {
+        "price": 599900,
+        "beds": 5,
+        "baths": 3,
+        "sqft": 2990,
+        "lotSqft": 11326,
+        "yearBuilt": 1978,
+        "style": "2-story single family",
+        "pricePerSqft": 201,
+        "hoaMonthly": 40,
+        "secondHoaMonthly": null,
+        "metroDistrict": null,
+        "annualTax": 2083,
+        "taxAssessedValue": 580069,
+        "daysOnMarket": 27,
+        "roofMaterial": "\"Other\" — not specified, and not Class 4",
+        "basement": "Finished",
+        "heating": "Forced Air, Natural Gas",
+        "cooling": "Central Air",
+        "water": "Municipal (Colorado Springs Utilities)",
+        "floodZone": "FEMA Zone X (unshaded) — minimal-risk flood area",
+        "listingTerms": "Cash, Conventional, FHA, VA Loan — all accepted",
+        "walkScore": 32,
+        "mlsNumber": "3489016",
+        "zillowUrl": "https://www.zillow.com/homedetails/6520-Hawkeye-Cir-Colorado-Springs-CO-80919/13568725_zpid/",
+        "redfinUrl": null,
+        "sourceOfTruth": "scraped",
+        "fetchedAt": "2026-08-06"
+      },
+      "priceHistory": [
+        {
+          "date": "2026-07-30",
+          "event": "Price cut (-3.2%, -$20,100)",
+          "price": 599900
+        },
+        {
+          "date": "2026-07-10",
+          "event": "Listed for sale",
+          "price": 620000
+        }
+      ],
+      "geo": {
+        "lat": 38.92597,
+        "lon": -104.82792,
+        "neighborhood": "Rockrimmon (southeast edge)",
+        "driveMinutesToAnchor": 6.4,
+        "driveMilesToAnchor": 2.7,
+        "routedAt": "2026-08-06"
+      },
+      "schools": {
+        "district": null,
+        "elementary": "Rockrimmon Elementary (district needs confirming — likely D-20)",
+        "middle": null,
+        "high": null
+      },
+      "scores": {
+        "foundation": {
+          "score": 2,
+          "why": "Rockrimmon is named EXPLICITLY as one of the highest-risk expansive-soil areas — steep terrain plus clay plus mountain proximity makes foundation distress 'pretty common' there. 1978 build, no engineering report offered [T04]"
+        },
+        "wildfire": {
+          "score": 2,
+          "why": "Rockrimmon is named among the wildfire-risk areas where premiums reach $15,000/yr, and this lot backs to open space — the classic interface pattern. No documented mitigation, no quote yet [T04][T05]"
+        },
+        "water": {
+          "score": 4,
+          "why": "FEMA Zone X unshaded, minimal-risk — the cleanest flood read we've had. Offset slightly because the basement is finished, so any past intrusion is hidden behind finishes [T04]"
+        },
+        "roof": {
+          "score": 1,
+          "why": "Material listed only as 'Other' with no age given, on a 1978 house. Definitely not Class 4, so no premium discount, in a city with 5.5 hail days a year [T04]"
+        },
+        "systems": {
+          "score": 2,
+          "why": "1978 is the FIRST year of polybutylene supply pipe, which fails without warning and is often uninsurable. Clay or cast-iron sewer lateral also likely pre-1980. Forced air and central air present but age unstated [T04]"
+        },
+        "layout": {
+          "score": 5,
+          "why": "5 beds and 3 baths beats the 4/3 minimum, 2,990 sqft, finished basement, 0.26-acre corner lot, attached garage. Genuinely roomy with space to host [T08]"
+        },
+        "value": {
+          "score": 2,
+          "why": "$201/sqft and priced ABOVE the county's own actual value of $580,069. Already cut $20,100 and still unsold at 27 days. At $599,900 there is no cushion left for what the inspection finds [T05][T08]"
+        },
+        "location": {
+          "score": 4,
+          "why": "6.4 min to YWAM, cul-de-sac corner lot backing open space with Pikes Peak views — views can't be bought or rebuilt. Docked for Walk Score 32 and unknown deck/driveway orientation [T07]"
+        },
+        "carrying": {
+          "score": 5,
+          "why": "HOA only $40/mo, no metro district disclosed, all four services on one CSU bill, and tax just $2,083/yr. About as clean as carrying costs get here [T07][T06]"
+        },
+        "radon": {
+          "score": null,
+          "why": "No test mentioned and the basement is finished. El Paso County is EPA Zone 1, so assume it needs testing [BASE]"
+        },
+        "resale": {
+          "score": 4,
+          "why": "Rockrimmon is established and built-out, so no new construction caps resale — the main appreciation lever. FHA/VA eligibility widens the future buyer pool too [T08]"
+        }
+      },
+      "flags": {
+        "wildfire": {
+          "severity": "critical",
+          "text": "Rockrimmon is named in the videos as a wildfire-risk area where premiums run as high as $15,000 a year, and this lot backs to open space — exactly the exposure pattern insurers price hardest. Get a written quote for this address BEFORE you tour. It could add $300-900 a month."
+        },
+        "soil": {
+          "severity": "critical",
+          "text": "Rockrimmon is called out specifically as one of the worst areas for expansive-soil foundation damage — steep terrain, heavy clay, close to the mountains. On a 1978 house this needs a structural engineer, not just a general inspector. One Rockrimmon buyer was quoted more than double their budgeted insurance at underwriting because of shifting ground."
+        },
+        "roof": {
+          "severity": "critical",
+          "text": "The roof material is listed only as \"Other\" with no age stated, on a 47-year-old house. That's not an answer. It isn't Class 4, so there's no insurance discount — budget $11,000-25,000 and ask the seller for a Class 4 roof specifically."
+        },
+        "plumbing": {
+          "severity": "warning",
+          "text": "1978 is the first year polybutylene supply pipe was used. It fails without warning and is often uninsurable. A clay or cast-iron sewer lateral is also likely at this age. Identify the pipe material and scope the sewer."
+        },
+        "priced-high": {
+          "severity": "warning",
+          "text": "The county values this at $580,069 and it's listed at $599,900 — about $20k above. It's already been cut $20,100 once and still hasn't sold in 27 days."
+        },
+        "no-cushion": {
+          "severity": "warning",
+          "text": "At $599,900 you'd have $100 of room against your $600k ceiling, on a 1978 house with an undisclosed roof. There's no reserve left for whatever the inspection turns up."
+        },
+        "stucco": {
+          "severity": "warning",
+          "text": "Stucco is listed in the exterior materials. Check it closely for hail pock marks and cracking — that's a known tell here."
+        },
+        "flood-ok": {
+          "severity": "note",
+          "text": "Flood risk is clean: FEMA Zone X unshaded, minimal-risk. One of the two big pre-tour checks already passes."
+        },
+        "financing-ok": {
+          "severity": "note",
+          "text": "Cash, conventional, FHA and VA are all accepted, which suggests the condition would pass an FHA/VA appraisal — the opposite signal from an as-is listing."
+        },
+        "quality": {
+          "severity": "note",
+          "text": "Real money has already gone into this one: Wolf and Thermador appliances, solid cherry custom cabinets, finished basement, professional landscaping. And carrying costs are genuinely low — $40/mo HOA, $2,083/yr tax."
+        },
+        "competition": {
+          "severity": "note",
+          "text": "5,825 views and 593 saves in 27 days. A lot of eyes on it, so don't expect a deep discount to land uncontested."
+        }
+      },
+      "monthly": {
+        "principalInterest": 3032,
+        "propertyTax": 174,
+        "insuranceEstimate": 450,
+        "insuranceIsQuote": false,
+        "hoa": 40,
+        "metroDistrict": 0,
+        "total": 3696,
+        "note": "Assumes 20% down ($479,920 loan) at 6.5% over 30 years — confirm with a lender. THE INSURANCE LINE IS THE BIG UNKNOWN and is an estimate, not a quote. Rockrimmon is named as a wildfire-risk area: if it prices as interface property, expect $375-710/mo instead of $450, and the worst case cited in the videos is $15,000/yr, which would be $1,250/mo. That single line can swing the payment by $800. Zillow shows $3,719/mo, but its insurance figure is generic."
+      },
+      "offer": {
+        "suggested": 565000,
+        "rationale": "The county's own actual value is $580,069, it's already been cut once from $620,000, and it hasn't sold in 27 days during what's still decent season. Citywide, the average home sold $79k below the average list price. Most importantly you need to buy below ask here to preserve a reserve — a 1978 house with an undisclosed roof at the very top of budget is exactly the trap of buying something that only works if nothing goes wrong. Counterweight: 593 saves means real competition, so this is a serious offer rather than a lowball.",
+        "asks": [
+          "A Class 4 impact-resistant roof, specified as such — highest-value single ask, saves 20-30% on premium every year [T04]",
+          "Proof of insurability: a binder or written quote before the inspection deadline, given Rockrimmon's wildfire pricing [T04]",
+          "Enough inspection days for a structural engineer AND a sewer scope, not just a general inspection [T04]",
+          "Seller concessions toward closing costs, commonly $8,000-10,000 in this market [T05]",
+          "A rate buydown rather than a further price cut if they resist — often saves more per month [T05]"
+        ],
+        "reserveNeeded": 40000
+      },
+      "photos": [
+        {
+          "url": "https://photos.zillowstatic.com/fp/a777a06098f2fabfc6dc2f0519505241-cc_ft_1536.jpg",
+          "caption": "6520 Hawkeye Cir — front",
+          "credit": "Zillow listing"
+        }
+      ],
+      "openQuestions": [
+        "Roof age, actual material, and permit — \"Other\" is not an answer",
+        "Insurance quote for THIS address — the single biggest variable here",
+        "Has a structural engineer ever evaluated it? Rockrimmon soil makes this non-optional",
+        "Supply pipe material — is it polybutylene? 1978 is the first year",
+        "Sewer lateral material — scope it regardless",
+        "Radon test result",
+        "Is the wraparound deck covered? West-facing for Pikes Peak views means brutal July afternoon sun",
+        "Which way does the driveway face? North-facing holds ice for weeks on a slope",
+        "Is there a metro district on this parcel? (parcel 6307306044)",
+        "Which school district — Rockrimmon Elementary suggests D-20, which helps resale even though you homeschool",
+        "Furnace and water heater age; electrical panel brand and amp service",
+        "What prompted the $20,100 cut — did a prior contract fall through on inspection?"
+      ],
+      "addedAt": "2026-08-06"
     }
   ]
 }

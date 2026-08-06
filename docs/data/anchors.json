@@ -27,19 +27,102 @@
     }
   ],
   "referenceNeighborhoods": [
-    { "name": "Pope's Bluff",        "lat": 38.8975, "lon": -104.8290, "expectation": "inside"  },
-    { "name": "Holland Park",        "lat": 38.8920, "lon": -104.8420, "expectation": "inside"  },
-    { "name": "Vista Grande",        "lat": 38.9060, "lon": -104.8240, "expectation": "inside"  },
-    { "name": "University Park",     "lat": 38.9010, "lon": -104.8130, "expectation": "inside"  },
-    { "name": "Mountain Shadows",    "lat": 38.9010, "lon": -104.8720, "expectation": "inside"  },
-    { "name": "Pleasant Valley",     "lat": 38.8680, "lon": -104.8660, "expectation": "inside"  },
-    { "name": "Kissing Camels",      "lat": 38.8880, "lon": -104.8560, "expectation": "inside"  },
-    { "name": "Rockrimmon",          "lat": 38.9330, "lon": -104.8570, "expectation": "edge"    },
-    { "name": "Pinecliff",           "lat": 38.9180, "lon": -104.8750, "expectation": "edge"    },
-    { "name": "Peregrine",           "lat": 38.9270, "lon": -104.8830, "expectation": "edge"    },
-    { "name": "Old Colorado City",   "lat": 38.8530, "lon": -104.8600, "expectation": "edge"    },
-    { "name": "Woodmen Valley",      "lat": 38.9420, "lon": -104.8420, "expectation": "edge"    },
-    { "name": "Cedar Heights",       "lat": 38.8690, "lon": -104.8930, "expectation": "edge"    }
+    {
+      "name": "Pope's Bluff",
+      "lat": 38.8975,
+      "lon": -104.829,
+      "expectation": "inside"
+    },
+    {
+      "name": "Holland Park",
+      "lat": 38.892,
+      "lon": -104.842,
+      "expectation": "inside"
+    },
+    {
+      "name": "Vista Grande",
+      "lat": 38.906,
+      "lon": -104.824,
+      "expectation": "inside"
+    },
+    {
+      "name": "University Park",
+      "lat": 38.901,
+      "lon": -104.813,
+      "expectation": "inside"
+    },
+    {
+      "name": "Mountain Shadows",
+      "lat": 38.901,
+      "lon": -104.872,
+      "expectation": "inside"
+    },
+    {
+      "name": "Pleasant Valley",
+      "lat": 38.868,
+      "lon": -104.866,
+      "expectation": "inside"
+    },
+    {
+      "name": "Kissing Camels",
+      "lat": 38.888,
+      "lon": -104.856,
+      "expectation": "inside"
+    },
+    {
+      "name": "Pinecliff",
+      "lat": 38.918,
+      "lon": -104.875,
+      "expectation": "edge"
+    },
+    {
+      "name": "Peregrine",
+      "lat": 38.927,
+      "lon": -104.883,
+      "expectation": "edge"
+    },
+    {
+      "name": "Old Colorado City",
+      "lat": 38.853,
+      "lon": -104.86,
+      "expectation": "edge"
+    },
+    {
+      "name": "Woodmen Valley",
+      "lat": 38.942,
+      "lon": -104.842,
+      "expectation": "edge"
+    },
+    {
+      "name": "Cedar Heights",
+      "lat": 38.869,
+      "lon": -104.893,
+      "expectation": "edge"
+    },
+    {
+      "name": "Rockrimmon (SE, Hawkeye)",
+      "lat": 38.92597,
+      "lon": -104.82792,
+      "expectation": "inside"
+    },
+    {
+      "name": "Rockrimmon (central)",
+      "lat": 38.929,
+      "lon": -104.845,
+      "expectation": "edge"
+    },
+    {
+      "name": "Rockrimmon (NW)",
+      "lat": 38.933,
+      "lon": -104.857,
+      "expectation": "edge"
+    },
+    {
+      "name": "Peregrine (S)",
+      "lat": 38.92,
+      "lon": -104.878,
+      "expectation": "edge"
+    }
   ],
   "_comment": "referenceNeighborhoods are sanity checks for the 10-minute isochrone, not listings. Drive times are computed by tools/intake.py via OSRM and cached into data/drivetimes.json."
 }

@@ -45,12 +45,6 @@
       "inRadius": true
     },
     {
-      "name": "Rockrimmon",
-      "minutes": 11.9,
-      "miles": 4.6,
-      "inRadius": false
-    },
-    {
       "name": "Pinecliff",
       "minutes": 8.4,
       "miles": 3.7,
@@ -78,6 +72,30 @@
       "name": "Cedar Heights",
       "minutes": 16.7,
       "miles": 7.0,
+      "inRadius": false
+    },
+    {
+      "name": "Rockrimmon (SE, Hawkeye)",
+      "minutes": 6.6,
+      "miles": 2.7,
+      "inRadius": true
+    },
+    {
+      "name": "Rockrimmon (central)",
+      "minutes": 9.4,
+      "miles": 3.7,
+      "inRadius": true
+    },
+    {
+      "name": "Rockrimmon (NW)",
+      "minutes": 11.9,
+      "miles": 4.6,
+      "inRadius": false
+    },
+    {
+      "name": "Peregrine (S)",
+      "minutes": 10.1,
+      "miles": 4.2,
       "inRadius": false
     }
   ]
