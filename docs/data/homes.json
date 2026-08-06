@@ -1,10 +1,11 @@
 {
   "schema": {
-    "_doc": "Reference only — not a real home. Every field a real entry may use, with its meaning. Copy this shape, drop the _doc keys. Use null for anything unverified; NEVER guess a number.",
+    "_doc": "Reference only — not a real home. Copy this shape, drop the _doc keys. Use null for anything unverified; NEVER guess a number. Most listing fields come straight from a Firecrawl scrape of the Zillow page.",
     "id": "kebab-case-slug-from-street",
     "address": "1234 Example St, Colorado Springs, CO 80907",
     "status": "active | rejected | toured | offer | passed | archived",
     "rejectedReason": "null unless status is rejected — which hard parameter failed",
+    "verdict": "One or two plain sentences: what this house is and what we should do about it. The first thing the family reads.",
     "listing": {
       "price": 575000,
       "beds": 4,
@@ -12,15 +13,40 @@
       "sqft": 2400,
       "lotSqft": 9000,
       "yearBuilt": 1978,
-      "style": "split-level | tri-level | ranch | 2-story | bi-level",
+      "style": "split-level | tri-level | ranch | 2-story",
+      "pricePerSqft": 240,
       "hoaMonthly": 0,
+      "secondHoaMonthly": null,
+      "metroDistrict": null,
+      "annualTax": 2400,
+      "taxAssessedValue": 480000,
       "daysOnMarket": 12,
+      "roofMaterial": "Composite Shingle",
+      "basement": "Full, Finished",
+      "heating": "Forced Air",
+      "cooling": "Central Air",
+      "water": "Municipal",
+      "floodZone": "FEMA Zone X (unshaded), minimal-risk",
+      "listingTerms": "Cash, Conventional, FHA, VA Loan",
+      "walkScore": 44,
+      "mlsNumber": "9691602",
       "zillowUrl": null,
       "redfinUrl": null,
-      "mlsNumber": null,
       "sourceOfTruth": "scraped | screenshot | manual-entry",
       "fetchedAt": "2026-08-06"
     },
+    "priceHistory": [
+      {
+        "date": "2026-06-24",
+        "event": "Price change",
+        "price": 532500
+      },
+      {
+        "date": "2026-05-14",
+        "event": "Listed for sale",
+        "price": 534000
+      }
+    ],
     "geo": {
       "lat": 38.8986,
       "lon": -104.8334,
@@ -31,28 +57,247 @@
     },
     "schools": {
       "_doc": "Reference only — never affects score. Homeschool.",
-      "district": "D-11 | D-20",
+      "district": "Colorado Springs 11",
       "elementary": null,
       "middle": null,
       "high": null
     },
     "scores": {
-      "_doc": "Keys match criterion ids in criteria/90-scoring-rubric.md. 0-5, or null for unknown. Every score needs a why.",
-      "example-criterion": { "score": 4, "why": "Roof replaced 2021 per listing remarks [T01]" }
+      "_doc": "Keys match criterion ids in data/rubric.json. 0-5, or null for unknown. Every score needs a why citing the transcript tag.",
+      "foundation": {
+        "score": 4,
+        "why": "No disclosed movement; positive drainage [T04]"
+      }
     },
     "totalScore": null,
     "flags": {
-      "_doc": "Hard-won red flags. Severity drives the color on the site.",
-      "example": { "severity": "critical | warning | note", "text": "Plain-language description" }
+      "_doc": "Plain-language red flags. Severity drives the colour on the site.",
+      "roof": {
+        "severity": "critical | warning | note",
+        "text": "Plain-language description"
+      }
+    },
+    "monthly": {
+      "_doc": "The REAL payment, not Zillow's estimate — Zillow omits the wildfire insurance reality and any metro district. insuranceIsQuote must be true only for a real address-specific quote.",
+      "principalInterest": 2723,
+      "propertyTax": 200,
+      "insuranceEstimate": 186,
+      "insuranceIsQuote": false,
+      "hoa": 180,
+      "metroDistrict": 0,
+      "total": 3289,
+      "note": "Insurance is a generic estimate, not a quote. In a wildfire zone this line could be 3-4x higher."
+    },
+    "offer": {
+      "_doc": "What to offer and what to ask for, grounded in criteria/40-market-and-negotiation.md.",
+      "suggested": 505000,
+      "rationale": "84 days on market with one price cut; citywide Q1 list-to-sold gap was $79k [T05].",
+      "asks": [
+        "Class 4 impact-resistant roof, not a generic replacement [T04]",
+        "Rate buydown over an equivalent price cut [T05]"
+      ],
+      "reserveNeeded": 30000
     },
     "photos": [
-      { "url": "site/assets/homes/example-st-01.jpg", "caption": "Front elevation", "credit": "Zillow listing" }
+      {
+        "url": "https://photos.zillowstatic.com/...jpg",
+        "caption": "Front elevation",
+        "credit": "Zillow listing"
+      }
     ],
-    "familyNotes": [],
     "openQuestions": [
       "Roof age not stated in listing — ask agent"
     ],
     "addedAt": "2026-08-06"
   },
-  "homes": []
+  "homes": [
+    {
+      "id": "1443-acacia-dr",
+      "address": "1443 Acacia Dr, Colorado Springs, CO 80907",
+      "status": "active",
+      "rejectedReason": null,
+      "verdict": "A 1963 fixer at $375k, 6.5 minutes from YWAM, with 5 bedrooms, a basement kitchenette, no HOA, and only $1,535 a year in tax — and the county values it $103k ABOVE the asking price. The catch is real though: it's sold as-is and the seller excluded FHA and VA financing, which usually means the condition wouldn't pass those appraisals. Worth touring, but bring a contractor, not just an inspector.",
+      "listing": {
+        "price": 375000,
+        "beds": 5,
+        "baths": 3,
+        "sqft": 2432,
+        "lotSqft": 9500,
+        "yearBuilt": 1963,
+        "style": "Ranch",
+        "pricePerSqft": 154,
+        "hoaMonthly": 0,
+        "secondHoaMonthly": null,
+        "metroDistrict": 0,
+        "annualTax": 1535,
+        "taxAssessedValue": 478587,
+        "daysOnMarket": 36,
+        "roofMaterial": "Composite Shingle (age not stated)",
+        "basement": "Partial, partially finished — includes a second kitchenette",
+        "heating": "Forced Air, Natural Gas",
+        "cooling": "Central Air + ceiling fans",
+        "water": "Municipal (Colorado Springs Utilities)",
+        "floodZone": "FEMA Zone X — moderate-risk flood area",
+        "listingTerms": "Cash, Conventional only — no FHA, no VA",
+        "walkScore": 23,
+        "mlsNumber": "7418100",
+        "zillowUrl": "https://www.zillow.com/homedetails/1443-Acacia-Dr-Colorado-Springs-CO-80907/13591096_zpid/",
+        "redfinUrl": null,
+        "sourceOfTruth": "scraped",
+        "fetchedAt": "2026-08-06"
+      },
+      "priceHistory": [
+        {
+          "date": "2026-07-31",
+          "event": "Price cut (-2.6%)",
+          "price": 375000
+        },
+        {
+          "date": "2026-06-30",
+          "event": "Listed for sale",
+          "price": 385000
+        },
+        {
+          "date": "2021-01-01",
+          "event": "Rental listing removed",
+          "price": null
+        },
+        {
+          "date": "2020-09-21",
+          "event": "Listed for rent",
+          "price": 1000
+        }
+      ],
+      "geo": {
+        "lat": 38.886295,
+        "lon": -104.79877,
+        "neighborhood": "University Park, near UCCS",
+        "driveMinutesToAnchor": 6.5,
+        "driveMilesToAnchor": 2.7,
+        "routedAt": "2026-08-06"
+      },
+      "schools": {
+        "district": null,
+        "elementary": null,
+        "middle": null,
+        "high": null
+      },
+      "scores": {
+        "foundation": {
+          "score": null,
+          "why": "No structural information at all — 1963 build on Front Range clay, sold as-is, no engineering report mentioned. Genuinely unknown, so scored null rather than guessed [T04]"
+        },
+        "wildfire": {
+          "score": 5,
+          "why": "East of I-25, no foothills interface, outside every wildland-urban interface neighborhood named in the videos. Insurance should price normally here [T04][T06]"
+        },
+        "water": {
+          "score": 3,
+          "why": "FEMA Zone X moderate-risk — not federally mandated coverage but not minimal either. Grading and basement moisture unverified [T04]"
+        },
+        "roof": {
+          "score": 1,
+          "why": "Composite shingle, age not stated, on a 1963 house sold as-is. Not Class 4, so no premium discount. Assume replacement at $11-25k [T04]"
+        },
+        "systems": {
+          "score": 2,
+          "why": "1963 build puts galvanized supply pipe, aluminum branch wiring, and a clay or cast-iron sewer lateral all in play. Listing itemises only cosmetic work, so mechanicals are unverified [T04]"
+        },
+        "layout": {
+          "score": 5,
+          "why": "5 beds and 3 baths beats our 4/3 minimum, plus a dedicated office, oversized garage, storage shed, and a basement kitchenette that gives the separate-suite option [T08]"
+        },
+        "value": {
+          "score": 4,
+          "why": "$154/sqft, and the county's actual value is $478,587 against a $375k ask. Even adding $90k of renovation lands near $465k, well under our $600k ceiling"
+        },
+        "location": {
+          "score": 3,
+          "why": "6.5 min to YWAM is good, but Walk Score 23 is car-dependent and it's marketed as UCCS student-rental territory. Driveway orientation and sun exposure unknown [T07]"
+        },
+        "carrying": {
+          "score": 5,
+          "why": "No HOA, no metro district, municipal water on one CSU bill, and only $1,535/yr in tax. About as clean as carrying costs get here [T07][T06]"
+        },
+        "radon": {
+          "score": null,
+          "why": "No test mentioned. Partial basement. El Paso County is EPA Zone 1, so assume it needs testing [BASE]"
+        },
+        "resale": {
+          "score": 3,
+          "why": "Built-out area with no new construction competing, which is the appreciation lever [T08]. But cash/conventional-only shrinks the buyer pool until the condition is fixed"
+        }
+      },
+      "flags": {
+        "financing": {
+          "severity": "critical",
+          "text": "Sold as-is, and the seller excluded FHA and VA — cash or conventional only. That usually means the condition wouldn't pass an FHA or VA appraisal, and it shrinks the pool of buyers when we eventually sell."
+        },
+        "era": {
+          "severity": "critical",
+          "text": "Built 1963. Galvanized supply pipe, aluminum branch wiring, and a clay or cast-iron sewer lateral are all in play at that age. Scope the sewer and open the electrical panel before the inspection deadline."
+        },
+        "roof": {
+          "severity": "warning",
+          "text": "Composite shingle with no stated age on a 1963 house. Budget $11,000-25,000, and it won't be Class 4 — so no insurance discount either."
+        },
+        "flood": {
+          "severity": "warning",
+          "text": "FEMA Zone X, moderate-risk flood area. Coverage isn't federally required, but get a quote and look hard at how the ground slopes around the foundation."
+        },
+        "investor": {
+          "severity": "warning",
+          "text": "Marketed to investors as UCCS student housing. Expect rental-heavy neighbours and competition from investors on any offer — 1,409 views and 102 saves in 36 days."
+        },
+        "upside": {
+          "severity": "note",
+          "text": "The county values this at $478,587 against a $375,000 ask — about $103k of headroom. The bones may genuinely be worth more than the price."
+        },
+        "carrying": {
+          "severity": "note",
+          "text": "No HOA, no metro district, municipal water, and $1,535 a year in tax. Carrying costs are excellent, which is rarer than it sounds around here."
+        }
+      },
+      "monthly": {
+        "principalInterest": 1896,
+        "propertyTax": 128,
+        "insuranceEstimate": 350,
+        "insuranceIsQuote": false,
+        "hoa": 0,
+        "metroDistrict": 0,
+        "total": 2374,
+        "note": "Assumes 20% down ($300k loan) at 6.5% over 30 years — confirm the rate with a lender. Insurance is an estimate from the Colorado statewide average, NOT a quote. This one is outside the wildfire zones, so it should price normally, but get the real number before the deadline."
+      },
+      "offer": {
+        "suggested": 350000,
+        "rationale": "36 days on market with one cut already ($385k to $375k), and the seller is selling as-is. Push on price rather than repairs — an as-is investor listing that excluded FHA/VA won't have appetite for a repair addendum. Counterweight: 102 saves and investor demand mean a deep lowball probably won't land, so $350k is a real offer rather than a fishing expedition.",
+        "asks": [
+          "Price credit for the roof instead of asking them to replace it — they're selling as-is [T04]",
+          "Full inspection contingency with enough days for a sewer scope and a structural engineer",
+          "Rate buydown over a further price cut if they push back — often saves more monthly [T05]"
+        ],
+        "reserveNeeded": 75000
+      },
+      "photos": [
+        {
+          "url": "https://photos.zillowstatic.com/fp/fda21c21aa4c669b23e7986dc4d53850-cc_ft_960.jpg",
+          "caption": "1443 Acacia Dr — front",
+          "credit": "Zillow listing"
+        }
+      ],
+      "openQuestions": [
+        "Roof age, and is there a permit for the last replacement?",
+        "Has a structural engineer ever evaluated it? 1963 on Front Range clay, sold as-is",
+        "Sewer lateral material — scope it regardless",
+        "Electrical panel brand, and is there aluminum branch wiring?",
+        "Supply pipe material — galvanized?",
+        "Radon test result",
+        "Insurance quote for this exact address",
+        "Why cash/conventional only — what specifically would fail an FHA appraisal?",
+        "How many of the 5 bedrooms are conforming with proper egress windows?",
+        "Get a contractor walkthrough for the real renovation number before the deadline"
+      ],
+      "addedAt": "2026-08-06"
+    }
+  ]
 }

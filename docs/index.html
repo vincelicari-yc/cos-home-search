@@ -13,7 +13,7 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="styles.css?v=202608061815">
+<link rel="stylesheet" href="styles.css?v=202608061832">
 </head>
 <body>
 
@@ -26,9 +26,6 @@
         <p class="brand-sub">Colorado Springs · 10 min from YWAM</p>
       </div>
     </div>
-    <button id="who-btn" class="who-btn" type="button" title="Set who you are">
-      <span id="who-label">Sign in</span>
-    </button>
   </div>
 </header>
 
@@ -42,7 +39,6 @@
     <div class="param"><span class="param-k">Anchor</span><span class="param-v">505 Popes Bluff Trl</span></div>
   </section>
 
-  <div id="sync-banner" class="banner banner-warn" hidden></div>
 
   <nav class="tabs" role="tablist">
     <button class="tab is-active" role="tab" data-tab="homes">Homes <span id="count-homes" class="pill">0</span></button>
@@ -216,22 +212,9 @@
   <p>Private family page · not indexed by search engines · last updated <span id="built"></span></p>
 </footer>
 
-<!-- Identity dialog -->
-<dialog id="who-dialog">
-  <form method="dialog">
-    <h2>Who are you?</h2>
-    <p class="muted">First name only — this page is public to anyone with the link, so we keep
-    last names off it. Saved on this device so you only do this once.</p>
-    <input id="who-input" type="text" placeholder="e.g. Vince" maxlength="20" autocomplete="off">
-    <div class="dialog-actions">
-      <button value="cancel" class="btn btn-ghost">Cancel</button>
-      <button id="who-save" value="save" class="btn">Save</button>
-    </div>
-  </form>
-</dialog>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="config.js?v=202608061815"></script>
-<script src="app.js?v=202608061815"></script>
+<script src="config.js?v=202608061832"></script>
+<script src="app.js?v=202608061832"></script>
 </body>
 </html>

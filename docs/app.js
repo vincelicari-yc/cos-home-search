@@ -1,30 +1,13 @@
 /* Home Search — Colorado Springs
  *
- * Static page, no build step. Loads data/*.json and renders. Ratings and comments go to a
- * Google Apps Script endpoint when one is configured in config.js; otherwise they fall back
- * to this device's localStorage so the page is still useful on day one.
+ * Read-only static page. No backend, no accounts, nothing to break. Loads data/*.json and
+ * renders. Vince sends Claude a Zillow URL; Claude scrapes it, scores it against criteria/,
+ * writes the analysis into data/homes.json, and redeploys. The family just reads.
  */
 'use strict';
 
-const API = (window.COS_CONFIG && window.COS_CONFIG.apiUrl || '').trim();
-const LS = {
-  who: 'cos.who',
-  tourPrefix: 'cos.tour.',
-  localRatings: 'cos.local.ratings',
-  localComments: 'cos.local.comments',
-};
-
 const state = {
-  homes: [],
-  anchors: null,
-  rubric: null,
-  checklist: null,
-  driveTimes: null,
-  ratings: {},   // homeId -> { who: stars }
-  comments: {},  // homeId -> [ {who, text, at} ]
-  who: localStorage.getItem(LS.who) || '',
-  shared: false, // true once the API answers
-  map: null,
+  homes: [], anchors: null, rubric: null, checklist: null, driveTimes: null, map: null,
 };
 
 /* ---------------- utilities ---------------- */
@@ -32,33 +15,21 @@ const state = {
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-/** Escape before interpolating into HTML. Comments are family-authored free text. */
 function esc(s) {
   return String(s == null ? '' : s).replace(/[&<>"']/g, c => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
   ));
 }
 
-const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
-
-/** Strip transcript provenance tags — [T04], [BASE], [T04][T06] — from family-facing text.
- *  They stay in the JSON so any claim can be traced back to the video that made it. */
+/** Strip transcript provenance tags — [T04], [BASE] — from family-facing text.
+ *  They stay in the JSON so any claim traces back to the video that made it. */
 const stripTags = s => String(s == null ? '' : s)
   .replace(/\s*\[(?:T\d{2}|BASE)\]/g, '')
   .replace(/\s+([.,;:!?])/g, '$1')
   .trim();
 
-function relTime(iso) {
-  const then = new Date(iso).getTime();
-  if (!Number.isFinite(then)) return '';
-  const mins = Math.round((Date.now() - then) / 60000);
-  if (mins < 1) return 'just now';
-  if (mins < 60) return mins + 'm ago';
-  const h = Math.round(mins / 60);
-  if (h < 24) return h + 'h ago';
-  const d = Math.round(h / 24);
-  return d < 30 ? d + 'd ago' : new Date(iso).toLocaleDateString();
-}
+const money  = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
+const money0 = n => n == null ? '—' : '$' + Math.round(Number(n)).toLocaleString('en-US');
 
 async function loadJSON(path) {
   const r = await fetch(path, { cache: 'no-store' });
@@ -67,8 +38,8 @@ async function loadJSON(path) {
 }
 
 /* ---------------- scoring ----------------
- * Totals come from KNOWN criteria only, rescaled to 0-100, and we report how many were
- * known. An unresearched home must never look worse than one we dug into and found wanting.
+ * Totals use KNOWN criteria only, rescaled to 0-100, and we report how many were known.
+ * An unresearched home must never look worse than one we dug into and found wanting.
  */
 function computeScore(home) {
   if (home.status === 'rejected') return { total: null, known: 0, of: 0, rejected: true };
@@ -82,121 +53,18 @@ function computeScore(home) {
     known++;
   }
   if (!weightKnown) return { total: null, known: 0, of: list.length, rejected: false };
-  return {
-    total: Math.round((got / weightKnown) * 100),
-    known, of: list.length, rejected: false,
-  };
+  return { total: Math.round((got / weightKnown) * 100), known, of: list.length, rejected: false };
 }
 
-const scoreClass = t => t == null ? 'score-none' : t >= 80 ? 'score-good' : t >= 65 ? 'score-ok' : 'score-bad';
+const scoreClass = t => t == null ? 'score-none'
+  : t >= 80 ? 'score-good' : t >= 65 ? 'score-ok' : 'score-bad';
 
-/* ---------------- ratings backend ---------------- */
-
-async function apiGet() {
-  const r = await fetch(`${API}?action=list`, { method: 'GET' });
-  if (!r.ok) throw new Error('list ' + r.status);
-  return r.json();
-}
-
-/** text/plain dodges the CORS preflight that Apps Script handles poorly. */
-async function apiPost(payload) {
-  const r = await fetch(API, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify(payload),
-  });
-  if (!r.ok) throw new Error('post ' + r.status);
-  return r.json();
-}
-
-function loadLocal() {
-  try { state.ratings  = JSON.parse(localStorage.getItem(LS.localRatings))  || {}; } catch { state.ratings = {}; }
-  try { state.comments = JSON.parse(localStorage.getItem(LS.localComments)) || {}; } catch { state.comments = {}; }
-}
-const saveLocal = () => {
-  localStorage.setItem(LS.localRatings, JSON.stringify(state.ratings));
-  localStorage.setItem(LS.localComments, JSON.stringify(state.comments));
-};
-
-async function initRatings() {
-  if (!API) { loadLocal(); showBanner('local'); return; }
-  try {
-    const d = await apiGet();
-    state.ratings = d.ratings || {};
-    state.comments = d.comments || {};
-    state.shared = true;
-  } catch (e) {
-    console.warn('Shared ratings unreachable, falling back to this device.', e);
-    loadLocal();
-    showBanner('error');
-  }
-}
-
-function showBanner(kind) {
-  const el = $('#sync-banner');
-  el.hidden = false;
-  el.innerHTML = kind === 'local'
-    ? `<strong>Ratings are saved to this device only.</strong> Everyone can rate and comment,
-       but scores won't sync between people until shared ratings are switched on —
-       see <code>tools/apps-script/SETUP.md</code> in the repo (about 5 minutes, one time).`
-    : `<strong>Couldn't reach shared ratings.</strong> Your ratings are saving to this device
-       for now and won't be visible to the rest of the family. Try reloading in a bit.`;
-}
-
-async function submitRating(homeId, stars) {
-  if (!requireWho()) return;
-  (state.ratings[homeId] = state.ratings[homeId] || {})[state.who] = stars;
-  if (state.shared) {
-    try { await apiPost({ action: 'rate', homeId, who: state.who, value: stars }); }
-    catch (e) { console.warn('rate failed', e); }
-  } else saveLocal();
-  renderHomes();
-}
-
-async function submitComment(homeId, text) {
-  if (!requireWho() || !text.trim()) return;
-  const entry = { who: state.who, text: text.trim(), at: new Date().toISOString() };
-  (state.comments[homeId] = state.comments[homeId] || []).push(entry);
-  if (state.shared) {
-    try { await apiPost({ action: 'comment', homeId, ...entry }); }
-    catch (e) { console.warn('comment failed', e); }
-  } else saveLocal();
-  renderHomes();
-}
-
-/* ---------------- identity ---------------- */
-
-function renderWho() {
-  $('#who-label').textContent = state.who || 'Sign in';
-}
-
-function requireWho() {
-  if (state.who) return true;
-  $('#who-dialog').showModal();
-  return false;
-}
-
-function initWho() {
-  const dlg = $('#who-dialog'), input = $('#who-input');
-  $('#who-btn').addEventListener('click', () => { input.value = state.who; dlg.showModal(); });
-  dlg.addEventListener('close', () => {
-    if (dlg.returnValue !== 'save') return;
-    const v = input.value.trim().slice(0, 20);
-    if (!v) return;
-    state.who = v;
-    localStorage.setItem(LS.who, v);
-    renderWho();
-    renderHomes();
-  });
-  renderWho();
-}
-
-/* ---------------- homes ---------------- */
+/* ---------------- home cards ---------------- */
 
 function visibleHomes() {
   const f = $('#filter').value;
   let list = state.homes.slice();
-  if (f === 'live')     list = list.filter(h => !['rejected', 'passed', 'archived'].includes(h.status));
+  if (f === 'live') list = list.filter(h => !['rejected', 'passed', 'archived'].includes(h.status));
   else if (f === 'toured')   list = list.filter(h => h.status === 'toured');
   else if (f === 'rejected') list = list.filter(h => h.status === 'rejected');
 
@@ -213,35 +81,93 @@ function visibleHomes() {
   return list;
 }
 
+function scoreBreakdown(h) {
+  const rows = state.rubric.criteria.map(c => {
+    const s = (h.scores || {})[c.id];
+    const known = s && s.score != null;
+    const pct = known ? (s.score / 5) * 100 : 0;
+    return `<div class="crit ${known ? '' : 'crit-unknown'}">
+      <div class="crit-top">
+        <span class="crit-name">${esc(c.label)}</span>
+        <span class="crit-val">${known ? s.score + '/5' : 'needs check'}</span>
+      </div>
+      <div class="crit-bar"><div class="crit-fill" style="width:${pct}%"></div></div>
+      ${known && s.why ? `<p class="crit-why">${esc(stripTags(s.why))}</p>` : ''}
+    </div>`;
+  }).join('');
+  return `<div class="crits">${rows}</div>`;
+}
+
+function monthlyBlock(m) {
+  if (!m) return '';
+  const row = (label, v, cls = '') => v == null || v === 0
+    ? '' : `<tr class="${cls}"><td>${esc(label)}</td><td class="num">${money0(v)}</td></tr>`;
+  return `
+    <table class="mo">
+      <tbody>
+        ${row('Principal & interest', m.principalInterest)}
+        ${row('Property tax', m.propertyTax)}
+        ${row(m.insuranceIsQuote ? 'Insurance (real quote)' : 'Insurance (estimate only)',
+              m.insuranceEstimate, m.insuranceIsQuote ? '' : 'mo-est')}
+        ${row('HOA', m.hoa)}
+        ${row('Metro district', m.metroDistrict)}
+      </tbody>
+      <tfoot><tr><td><strong>Real monthly</strong></td>
+        <td class="num"><strong>${money0(m.total)}</strong></td></tr></tfoot>
+    </table>
+    ${m.note ? `<p class="mo-note">${esc(stripTags(m.note))}</p>` : ''}`;
+}
+
+function offerBlock(o) {
+  if (!o) return '';
+  return `
+    <div class="offer">
+      <div class="offer-head">
+        <span class="offer-label">Suggested offer</span>
+        <span class="offer-num">${money(o.suggested)}</span>
+      </div>
+      ${o.rationale ? `<p class="offer-why">${esc(stripTags(o.rationale))}</p>` : ''}
+      ${(o.asks || []).length ? `<ul class="offer-asks">${
+        o.asks.map(a => `<li>${esc(stripTags(a))}</li>`).join('')}</ul>` : ''}
+      ${o.reserveNeeded ? `<p class="offer-why"><strong>Hold back ${money(o.reserveNeeded)}</strong>
+        for the repairs above.</p>` : ''}
+    </div>`;
+}
+
+function priceHistoryBlock(ph) {
+  if (!ph || !ph.length) return '';
+  return `<table class="ph"><thead><tr><th>Date</th><th>Event</th><th class="num">Price</th></tr></thead>
+    <tbody>${ph.map(e => `<tr><td>${esc(e.date)}</td><td>${esc(e.event)}</td>
+      <td class="num">${money(e.price)}</td></tr>`).join('')}</tbody></table>`;
+}
+
 function homeCard(h) {
   const sc = computeScore(h);
   const L = h.listing || {}, G = h.geo || {};
-  const ratings = state.ratings[h.id] || {};
-  const vals = Object.values(ratings).filter(v => typeof v === 'number');
-  const avg = vals.length ? (vals.reduce((a, b) => a + b, 0) / vals.length) : null;
-  const mine = ratings[state.who] || 0;
-  const comments = (state.comments[h.id] || []).slice().sort((a, b) => String(a.at).localeCompare(String(b.at)));
   const photo = (h.photos && h.photos[0]) || null;
 
   const scoreBox = sc.rejected
     ? `<div class="score score-bad"><span class="score-n">✕</span><span class="score-l">out</span></div>`
     : `<div class="score ${scoreClass(sc.total)}">
-         <span class="score-n">${sc.total ?? '—'}</span><span class="score-l">${sc.total == null ? 'no data' : 'score'}</span>
-       </div>`;
+         <span class="score-n">${sc.total ?? '—'}</span>
+         <span class="score-l">${sc.total == null ? 'no data' : 'score'}</span></div>`;
 
   const facts = [
     L.beds != null && `<span class="fact"><strong>${L.beds}</strong> bd</span>`,
     L.baths != null && `<span class="fact"><strong>${L.baths}</strong> ba</span>`,
     L.sqft != null && `<span class="fact"><strong>${Number(L.sqft).toLocaleString()}</strong> sqft</span>`,
     L.price != null && `<span class="fact"><strong>${money(L.price)}</strong></span>`,
+    L.pricePerSqft != null && `<span class="fact">${money(L.pricePerSqft)}/sqft</span>`,
     L.yearBuilt != null && `<span class="fact">built <strong>${L.yearBuilt}</strong></span>`,
     G.driveMinutesToAnchor != null && `<span class="fact"><strong>${G.driveMinutesToAnchor}</strong> min to YWAM</span>`,
-    L.hoaMonthly ? `<span class="fact">HOA <strong>${money(L.hoaMonthly)}</strong>/mo</span>` : '',
+    L.daysOnMarket != null && `<span class="fact"><strong>${L.daysOnMarket}</strong> days listed</span>`,
+    L.lotSqft != null && `<span class="fact">lot ${Number(L.lotSqft).toLocaleString()} sqft</span>`,
   ].filter(Boolean).join('');
 
   const flags = Object.values(h.flags || {})
     .filter(f => f && f.text)
-    .map(f => `<div class="flag flag-${esc(f.severity || 'note')}">${esc(stripTags(f.text))}</div>`).join('');
+    .map(f => `<div class="flag flag-${esc(f.severity || 'note')}">${esc(stripTags(f.text))}</div>`)
+    .join('');
 
   const links = [
     L.zillowUrl && `<a class="btn btn-ghost" href="${esc(L.zillowUrl)}" target="_blank" rel="noopener noreferrer">Zillow</a>`,
@@ -249,53 +175,62 @@ function homeCard(h) {
     `<a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&origin=${state.anchors.primary.lat},${state.anchors.primary.lon}&destination=${encodeURIComponent(h.address)}" target="_blank" rel="noopener noreferrer">Directions</a>`,
   ].filter(Boolean).join('');
 
+  // Key listing details worth surfacing without opening Zillow
+  const detail = (k, v) => v == null || v === '' ? '' :
+    `<div class="dt"><span class="dt-k">${esc(k)}</span><span class="dt-v">${esc(v)}</span></div>`;
+  const details = [
+    detail('Flood zone', L.floodZone),
+    detail('Roof', L.roofMaterial),
+    detail('Basement', L.basement),
+    detail('Heating / cooling', [L.heating, L.cooling].filter(Boolean).join(' · ') || null),
+    detail('Water', L.water),
+    detail('Annual tax', L.annualTax != null ? money(L.annualTax) : null),
+    detail('HOA', L.hoaMonthly ? money(L.hoaMonthly) + '/mo'
+      + (L.secondHoaMonthly ? ` + second HOA ${money(L.secondHoaMonthly)}/mo` : '')
+      : (L.hoaMonthly === 0 ? 'None' : null)),
+    detail('Metro district', L.metroDistrict == null ? null : (L.metroDistrict ? money(L.metroDistrict) + '/mo' : 'None')),
+    detail('Loan types', L.listingTerms),
+    detail('Neighborhood', G.neighborhood),
+    detail('District', h.schools && h.schools.district),
+    detail('MLS', L.mlsNumber),
+  ].filter(Boolean).join('');
+
   return `
   <article class="home ${sc.rejected ? 'is-rejected' : ''}">
-    ${photo ? `<img class="home-photo" src="${esc(photo.url)}" alt="${esc(photo.caption || h.address)}" loading="lazy">` : ''}
+    ${photo ? `<img class="home-photo" src="${esc(photo.url)}" alt="${esc(photo.caption || h.address)}" loading="lazy" referrerpolicy="no-referrer">` : ''}
     <div class="home-body">
       <div class="home-top">
         <div>
           <h3 class="home-addr">${esc(h.address)}</h3>
-          <div class="home-hood">${esc(G.neighborhood || '')}${h.status && h.status !== 'active' ? ' · ' + esc(h.status) : ''}</div>
+          <div class="home-hood">${esc(G.neighborhood || '')}${
+            h.status && !['active', 'rejected'].includes(h.status) ? ' · ' + esc(h.status) : ''}</div>
         </div>
         ${scoreBox}
       </div>
 
       ${h.rejectedReason ? `<div class="flag flag-critical" style="margin-top:10px">${esc(stripTags(h.rejectedReason))}</div>` : ''}
+      ${h.verdict ? `<p class="verdict">${esc(stripTags(h.verdict))}</p>` : ''}
       <div class="facts">${facts}</div>
       ${flags ? `<div class="flags">${flags}</div>` : ''}
+
       ${!sc.rejected && sc.total != null && sc.known < sc.of
-        ? `<p class="confidence">Based on ${sc.known} of ${sc.of} criteria — ${sc.of - sc.known} still need verification.</p>` : ''}
-      ${!sc.rejected && sc.total == null
-        ? `<p class="confidence">Not scored yet.</p>` : ''}
-      ${(h.openQuestions || []).length
-        ? `<p class="confidence">Open questions: ${esc(stripTags(h.openQuestions.join(' · ')))}</p>` : ''}
+        ? `<p class="confidence">Score based on ${sc.known} of ${sc.of} criteria — ${sc.of - sc.known} still need verification.</p>` : ''}
+      ${!sc.rejected && sc.total == null ? `<p class="confidence">Not scored yet.</p>` : ''}
+
+      ${h.monthly ? `<details class="drop"><summary>What it really costs per month</summary>
+        ${monthlyBlock(h.monthly)}</details>` : ''}
+      ${h.offer ? `<details class="drop" open><summary>Offer strategy</summary>
+        ${offerBlock(h.offer)}</details>` : ''}
+      ${!sc.rejected && sc.total != null ? `<details class="drop"><summary>Score breakdown</summary>
+        ${scoreBreakdown(h)}</details>` : ''}
+      ${details ? `<details class="drop"><summary>Listing details</summary>
+        <div class="dts">${details}</div></details>` : ''}
+      ${(h.priceHistory || []).length ? `<details class="drop"><summary>Price history</summary>
+        ${priceHistoryBlock(h.priceHistory)}</details>` : ''}
+      ${(h.openQuestions || []).length ? `<details class="drop"><summary>Open questions (${h.openQuestions.length})</summary>
+        <ul class="oq">${h.openQuestions.map(q => `<li>${esc(stripTags(q))}</li>`).join('')}</ul></details>` : ''}
 
       <div class="home-links">${links}</div>
-
-      <div class="rate">
-        <div class="rate-head">
-          <h4>Family rating</h4>
-          <span class="rate-avg">${avg ? `${avg.toFixed(1)} ★ · ${vals.length} vote${vals.length > 1 ? 's' : ''}` : 'no votes yet'}</span>
-        </div>
-        <div class="stars" data-home="${esc(h.id)}" role="group" aria-label="Your rating">
-          ${[1, 2, 3, 4, 5].map(n => `<button class="star ${n <= mine ? 'on' : ''}" data-stars="${n}"
-              type="button" title="${n} star${n > 1 ? 's' : ''}" aria-label="${n} of 5">★</button>`).join('')}
-        </div>
-        ${vals.length ? `<div class="votes">${Object.entries(ratings)
-          .map(([w, v]) => `<span class="vote">${esc(w)} ${v}★</span>`).join('')}</div>` : ''}
-
-        ${comments.length ? `<div class="comments">${comments.map(c => `
-          <div class="comment">
-            <span class="comment-who">${esc(c.who)}</span><span class="comment-when">${esc(relTime(c.at))}</span>
-            <p class="comment-text">${esc(c.text)}</p>
-          </div>`).join('')}</div>` : ''}
-
-        <form class="comment-form" data-home="${esc(h.id)}">
-          <textarea placeholder="Add a note for the family…" rows="1" maxlength="600"></textarea>
-          <button class="btn" type="submit">Post</button>
-        </form>
-      </div>
     </div>
   </article>`;
 }
@@ -309,10 +244,10 @@ function renderHomes() {
     el.innerHTML = `
       <div class="empty">
         <div class="empty-mark">🏡</div>
-        <h3>No homes added yet</h3>
-        <p>Send Vince a Zillow or Redfin link — or a screenshot plus the address — and it'll
-        show up here scored against everything we've learned, with drive time from YWAM
-        already checked.</p>
+        <h3>No homes analysed yet</h3>
+        <p>Send Vince a Zillow or Redfin link. It comes back here with a score, the real monthly
+        cost, a suggested offer, and everything worth checking — measured against what we learned
+        from the videos.</p>
       </div>`;
     return;
   }
@@ -322,16 +257,6 @@ function renderHomes() {
     return;
   }
   el.innerHTML = list.map(homeCard).join('');
-
-  $$('.stars .star').forEach(b => b.addEventListener('click', () =>
-    submitRating(b.parentElement.dataset.home, Number(b.dataset.stars))));
-
-  $$('.comment-form').forEach(f => f.addEventListener('submit', e => {
-    e.preventDefault();
-    const ta = $('textarea', f);
-    submitComment(f.dataset.home, ta.value);
-    ta.value = '';
-  }));
 }
 
 /* ---------------- map ---------------- */
@@ -360,7 +285,6 @@ function renderMap() {
       .addTo(map).bindPopup(`<b>${esc(s.label)}</b><br>${esc(s.note || '')}`);
   }
 
-  // Neighborhood reference dots — shows the family the shape of the search area.
   for (const n of (state.driveTimes && state.driveTimes.neighborhoods) || []) {
     const ref = (state.anchors.referenceNeighborhoods || []).find(x => x.name === n.name);
     if (!ref) continue;
@@ -384,7 +308,8 @@ function renderMap() {
       `<b>${esc(h.address)}</b><br>${money(h.listing && h.listing.price)} · ` +
       `${(h.listing && h.listing.beds) ?? '?'}bd/${(h.listing && h.listing.baths) ?? '?'}ba<br>` +
       `${h.geo.driveMinutesToAnchor ?? '?'} min from YWAM<br>` +
-      (sc.rejected ? `<b>Rejected:</b> ${esc(h.rejectedReason || '')}` : `Score: <b>${sc.total ?? 'not scored'}</b>`));
+      (sc.rejected ? `<b>Rejected:</b> ${esc(stripTags(h.rejectedReason || ''))}`
+                   : `Score: <b>${sc.total ?? 'not scored'}</b>`));
     pts.push([h.geo.lat, h.geo.lon]);
   }
   if (pts.length > 1) map.fitBounds(pts, { padding: [45, 45] });
@@ -392,8 +317,8 @@ function renderMap() {
 
 /* ---------------- tour checklist ---------------- */
 
-const tourKey = homeId => LS.tourPrefix + (homeId || '_general');
-
+const LS_TOUR = 'cos.tour.';
+const tourKey = homeId => LS_TOUR + (homeId || '_general');
 function tourState(homeId) {
   try { return JSON.parse(localStorage.getItem(tourKey(homeId))) || {}; } catch { return {}; }
 }
@@ -401,10 +326,9 @@ function tourState(homeId) {
 function renderChecklist() {
   const homeId = $('#tour-home').value;
   const done = tourState(homeId);
-  const secs = state.checklist.sections;
   let total = 0, checked = 0;
 
-  $('#checklist').innerHTML = secs.map(sec => {
+  $('#checklist').innerHTML = state.checklist.sections.map(sec => {
     const items = sec.items.map((it, i) => {
       const key = `${sec.id}.${i}`;
       const on = !!done[key];
@@ -417,8 +341,7 @@ function renderChecklist() {
     return `<details class="section" ${secDone < sec.items.length ? 'open' : ''}>
       <summary>${esc(sec.title)} <span class="section-count">${secDone}/${sec.items.length}</span></summary>
       <p class="section-intro">${esc(stripTags(sec.intro))}</p>
-      <ul class="check-list">${items}</ul>
-    </details>`;
+      <ul class="check-list">${items}</ul></details>`;
   }).join('');
 
   const pct = total ? Math.round((checked / total) * 100) : 0;
@@ -494,9 +417,6 @@ function initTabs() {
     return;
   }
 
-  await initRatings();
-
-  initWho();
   initTabs();
   initTourPicker();
   $('#sort').addEventListener('change', renderHomes);

@@ -71,12 +71,25 @@ plan to serve a private repo — but be clear-eyed about what it means:
 If any of that stops feeling acceptable, the fix is a private repo plus a different host
 (Cloudflare Pages and Netlify both serve private repos free with real access control).
 
-## Shared family ratings
+## How it works
 
-Ratings and comments work out of the box, saved per-device. To make them shared across the
-family — everyone seeing everyone's votes — follow
-[`tools/apps-script/SETUP.md`](tools/apps-script/SETUP.md). About 5 minutes, free, no new
-accounts. Until then the page shows a banner explaining ratings are local.
+Read-only by design. There's no backend, no accounts, and nothing to break — the page is static
+files, and the analysis is regenerated whenever Vince adds a home.
+
+The loop:
+
+1. Vince sends Claude a Zillow or Redfin URL.
+2. Claude scrapes it (Firecrawl, **stealth proxy** — `basic` silently returns a partial page),
+   geocodes it, and routes the drive time from the anchor.
+3. Claude scores it against `criteria/`, writes the verdict, the real monthly cost, the suggested
+   offer, and the open questions into `data/homes.json`.
+4. `./deploy.sh` republishes. The family reads.
+
+Each home gets: a 0–100 score with a per-criterion breakdown, plain-language red flags, the real
+monthly payment (Zillow's estimate omits the wildfire-insurance reality and any metro district),
+a suggested offer with what to ask for, full price history, and a list of what still needs
+verifying. The one interactive piece is the tour checklist, whose checkmarks save to your own
+device — no syncing, no accounts.
 
 ## The hard filters
 
