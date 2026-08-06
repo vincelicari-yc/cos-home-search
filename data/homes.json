@@ -333,7 +333,7 @@
         "redfinUrl": null,
         "sourceOfTruth": "scraped",
         "fetchedAt": "2026-08-06",
-        "foundationRepair": "Professionally repaired, documented, lifetime guarantee (transferability to be confirmed)"
+        "foundationRepair": "Professionally repaired, documented, lifetime guarantee — TRANSFERS to new owner"
       },
       "priceHistory": [
         {
@@ -364,7 +364,7 @@
       "scores": {
         "foundation": {
           "score": 5,
-          "why": "Foundation has been professionally repaired with documentation and a lifetime guarantee. T04 calls this the BEST case in a soil-risk area — 'repaired, documented and warrantied... that prior repair is actually a positive. You know the problem has been addressed.' Scored 5 CONDITIONAL on the warranty transferring to the buyer; drops back to 2 if it does not [T04]"
+          "why": "Foundation professionally repaired, documented, guaranteed for the lifetime of the house, and Vince confirms THE WARRANTY TRANSFERS to the next owner. T04 calls this the best case in a soil-risk area: 'repaired, documented and warrantied... that prior repair is actually a positive.' Scope and engineer sign-off still to be researched, but transferability is confirmed [T04]"
         },
         "wildfire": {
           "score": 2,
@@ -409,8 +409,8 @@
       },
       "flags": {
         "warranty": {
-          "severity": "critical",
-          "text": "GET THE FOUNDATION PAPERS AND CONFIRM THE WARRANTY TRANSFERS TO YOU. A lifetime guarantee that only covers the current owner is worth nothing to us. Also confirm it covers the whole foundation, not just the repaired section, and ask whether a structural engineer signed off on the repair. This single question is now the most valuable thing to nail down on this house."
+          "severity": "warning",
+          "text": "The lifetime foundation warranty transfers to you — confirmed. Still get the actual paperwork and read it: does it cover the whole foundation or only the repaired section, which company did the work, did a structural engineer sign off, and was the drainage cause corrected? Those change how much protection you're really inheriting, but the transfer itself is no longer the open question."
         },
         "drainage-cause": {
           "severity": "warning",
@@ -491,7 +491,6 @@
         }
       ],
       "openQuestions": [
-        "DOES THE FOUNDATION WARRANTY TRANSFER TO US? Get it in writing — this is the whole ballgame",
         "Does the warranty cover the entire foundation or only the repaired section?",
         "Which company did the repair, what did they do (piers? underpinning?), and did a structural engineer sign off?",
         "What caused the movement, and was the drainage corrected at the same time?",
@@ -506,6 +505,207 @@
         "Which school district — Rockrimmon Elementary suggests D-20, which helps resale even though you homeschool",
         "Furnace and water heater age; electrical panel brand and amp service",
         "What prompted the $20,100 cut — did a prior contract fall through on inspection?"
+      ],
+      "addedAt": "2026-08-06"
+    },
+    {
+      "id": "3760-catalpa-dr",
+      "address": "3760 Catalpa Dr, Colorado Springs, CO 80907",
+      "status": "active",
+      "rejectedReason": null,
+      "verdict": "The best value of the three. $440k for 4 beds, 3 baths, a full finished basement, no HOA, $1,535/yr in tax, move-in ready with new flooring and paint — and a BRAND NEW ROOF going on before closing. It's priced $24k BELOW the county's own valuation. Two real gaps: there is no air conditioning at all, and it sits in a moderate-risk flood zone near Templeton Gap with a freshly painted finished basement, which is exactly where past water would hide. Best single move: ask them to upgrade the new roof to Class 4 — they're replacing it anyway.",
+      "listing": {
+        "price": 440000,
+        "beds": 4,
+        "baths": 3,
+        "sqft": 2090,
+        "lotSqft": 11326,
+        "yearBuilt": 1983,
+        "style": "Ranch",
+        "pricePerSqft": 211,
+        "hoaMonthly": 0,
+        "secondHoaMonthly": null,
+        "metroDistrict": null,
+        "annualTax": 1535,
+        "taxAssessedValue": 463776,
+        "daysOnMarket": 28,
+        "roofMaterial": "Composite shingle — NEW ROOF to be installed prior to closing",
+        "foundationRepair": null,
+        "basement": "Full, finished — family room plus a 4th bedroom and bathroom",
+        "heating": "Forced Air",
+        "cooling": "NONE — no air conditioning",
+        "water": "Municipal (Colorado Springs Utilities)",
+        "floodZone": "FEMA Zone X — moderate-risk flood area",
+        "listingTerms": "Cash, Conventional, FHA, VA Loan — all accepted",
+        "walkScore": 16,
+        "mlsNumber": "7295218",
+        "zillowUrl": "https://www.zillow.com/homedetails/3760-Catalpa-Dr-Colorado-Springs-CO-80907/13590071_zpid/",
+        "redfinUrl": null,
+        "sourceOfTruth": "scraped",
+        "fetchedAt": "2026-08-06"
+      },
+      "priceHistory": [
+        {
+          "date": "2026-07-08",
+          "event": "Listed for sale (no cuts since)",
+          "price": 440000
+        },
+        {
+          "date": "2016-10-03",
+          "event": "Sold",
+          "price": 185200
+        },
+        {
+          "date": "1994-10-26",
+          "event": "Sold",
+          "price": 118000
+        }
+      ],
+      "geo": {
+        "lat": 38.885677,
+        "lon": -104.792564,
+        "neighborhood": "Central, near UCCS / Patty Jewett",
+        "driveMinutesToAnchor": 8.4,
+        "driveMilesToAnchor": 3.3,
+        "routedAt": "2026-08-06"
+      },
+      "schools": {
+        "district": null,
+        "elementary": null,
+        "middle": null,
+        "high": null
+      },
+      "scores": {
+        "foundation": {
+          "score": null,
+          "why": "No structural information offered, and the full basement is finished with brand-new flooring and paint, so any evidence is covered. Not in one of the named soil hot spots (Rockrimmon / Broadmoor Bluffs / SW foothills), which helps — but unknown is unknown, so null rather than guessed [T04]"
+        },
+        "wildfire": {
+          "score": 5,
+          "why": "East of I-25, no foothills interface, outside every wildland-urban interface neighbourhood named in the videos. Insurance should price normally [T04][T06]"
+        },
+        "water": {
+          "score": 2,
+          "why": "FEMA Zone X MODERATE-risk, and the listing itself places it near Templeton Gap — a major drainage channel. Full finished basement with new flooring and fresh paint means past water intrusion would be invisible [T04]"
+        },
+        "roof": {
+          "score": 4,
+          "why": "A NEW ROOF is being installed before closing — the best possible answer to the single most consumable item in this city. Not a 5 only because it won't be Class 4 unless we ask, so no 20-30% premium discount [T04]"
+        },
+        "systems": {
+          "score": 2,
+          "why": "1983 sits inside the polybutylene window (1978-95). And cooling is listed as NONE — retrofitting central air runs roughly $8-15k at this size. Furnace age unstated [T04]"
+        },
+        "layout": {
+          "score": 4,
+          "why": "Main-level primary suite plus two more beds and a full bath on one floor, then a basement family room with a 4th bedroom and bath — works for guests or multi-generational. Fenced 0.26-acre yard. Docked slightly at 2,090 sqft, the smallest of the three [T08]"
+        },
+        "value": {
+          "score": 5,
+          "why": "$440k against the county's actual value of $463,776 — priced $23,776 BELOW it, with a new roof included and $160k of headroom under our ceiling. Strongest value case we've seen [T05][T08]"
+        },
+        "location": {
+          "score": 3,
+          "why": "8.4 min measured, which is close enough to the limit that rush hour will push it past 10. Walk Score 16 means driving everywhere. Offsetting: Templeton Gap, Rock Island and Shooks Run trails plus Patty Jewett and Nancy Lewis Park nearby [T07]"
+        },
+        "carrying": {
+          "score": 5,
+          "why": "No HOA, no metro district disclosed, all services on one CSU bill, tax only $1,535/yr. Cheapest carrying costs of the three [T07][T06]"
+        },
+        "radon": {
+          "score": null,
+          "why": "No test mentioned; full finished basement. El Paso County is EPA Zone 1 [BASE]"
+        },
+        "resale": {
+          "score": 4,
+          "why": "Built-out central Colorado Springs with no new construction capping resale [T08]. FHA/VA eligible, and a new roof is a genuine selling point next time"
+        }
+      },
+      "flags": {
+        "no-ac": {
+          "severity": "critical",
+          "text": "There is NO air conditioning — heating is forced air but cooling is listed as \"None.\" At 6,000 feet with the UV load here, summer afternoons are genuinely rough. Retrofitting central air runs roughly $8,000-15,000. Budget it or negotiate a credit."
+        },
+        "flood": {
+          "severity": "critical",
+          "text": "Moderate-risk flood zone, and the listing itself puts it near Templeton Gap — a major drainage channel. Combined with a full finished basement, any past water intrusion is hidden. Look hard for efflorescence on any exposed basement wall and check how the ground slopes."
+        },
+        "fresh-finishes": {
+          "severity": "warning",
+          "text": "\"New flooring and fresh paint throughout\" on a 1983 house. Usually just good presentation — but fresh finishes are also how water staining and foundation cracks get covered up. Give the basement an extra-careful look, especially given the flood zone."
+        },
+        "polybutylene": {
+          "severity": "warning",
+          "text": "1983 falls inside the polybutylene supply-pipe window (1978-95). It fails without warning and is often uninsurable. Identify the pipe material before the deadline."
+        },
+        "drive-time": {
+          "severity": "warning",
+          "text": "8.4 minutes measured, free-flow with no traffic. At 8am or 5pm expect that to be 10 or more. Drive it at the hour you'd actually drive it before making an offer."
+        },
+        "new-roof": {
+          "severity": "note",
+          "text": "A NEW ROOF is going on before closing — that removes the biggest recurring cost in this city. Ask for it to be CLASS 4 impact-resistant. They're replacing it anyway, so the upgrade is marginal for them and it cuts your insurance 20-30% for as long as you own the house. This is the highest-leverage ask in our whole file."
+        },
+        "under-county": {
+          "severity": "note",
+          "text": "Priced $23,776 BELOW the county's own valuation of $463,776, with no price cut in 28 days. Leaves $160,000 of room under your ceiling."
+        },
+        "carrying": {
+          "severity": "note",
+          "text": "No HOA, no metro district, municipal water on one CSU bill, and $1,535 a year in tax. The cheapest house to own of the three."
+        },
+        "layout": {
+          "severity": "note",
+          "text": "Main-level primary suite with two more bedrooms and a full bath on the same floor, plus a basement bedroom and bath — good for guests, aging parents, or hosting."
+        },
+        "walkability": {
+          "severity": "note",
+          "text": "Walk Score 16. You will drive everywhere. Fine if that's expected, worth knowing if it isn't."
+        }
+      },
+      "monthly": {
+        "principalInterest": 2224,
+        "propertyTax": 128,
+        "insuranceEstimate": 325,
+        "insuranceIsQuote": false,
+        "hoa": 0,
+        "metroDistrict": 0,
+        "total": 2677,
+        "note": "Assumes 20% down ($352,000 loan) at 6.5% over 30 years — confirm with a lender. Insurance is an ESTIMATE, not a quote; this address is away from the wildfire zones so it should price normally, but get the real number. Does NOT include adding air conditioning, which is a one-time $8-15k rather than a monthly cost."
+      },
+      "offer": {
+        "suggested": 425000,
+        "rationale": "Listed 7/8 at $440,000 with no cut in 28 days, so they aren't panicking — but it's already priced $23,776 under the county's actual value, which means less room than Hawkeye has. $425,000 acknowledges that while pricing in the missing air conditioning (an $8-15k gap) and the 1983 plumbing question. The real win here isn't the last $15k of price, it's getting the roof upgraded to Class 4 while they're already paying for a roof.",
+        "asks": [
+          "UPGRADE THE NEW ROOF TO CLASS 4 impact-resistant — they're replacing it anyway, and it cuts the premium 20-30% permanently [T04]",
+          "Written permit and manufacturer's warranty for the new roof, transferred to us [T04]",
+          "Credit toward central air conditioning, or a price reduction reflecting the $8-15k cost",
+          "Sewer scope and identification of the supply pipe material before the deadline [T04]",
+          "Seller concessions toward closing costs, commonly $8,000-10,000 in this market [T05]"
+        ],
+        "reserveNeeded": 20000
+      },
+      "photos": [
+        {
+          "url": "https://photos.zillowstatic.com/fp/a17fa15e3b2e569b16a236fd0eb23a71-cc_ft_960.jpg",
+          "caption": "3760 Catalpa Dr — front",
+          "credit": "Zillow listing"
+        }
+      ],
+      "openQuestions": [
+        "Is the new roof CLASS 4? Get it in writing, with the permit and warranty",
+        "Confirm there is genuinely no HOA and no metro district on this parcel",
+        "Supply pipe material — polybutylene? 1983 is inside the window",
+        "Sewer lateral material — scope it",
+        "What's behind the new paint and flooring in the basement? Any history of water?",
+        "How does the ground slope, and where do downspouts terminate — Templeton Gap is close",
+        "Radon test result",
+        "Real quote to add central air conditioning",
+        "Any structural or foundation history? The finished basement hides evidence",
+        "Furnace age; electrical panel brand and amp service",
+        "Which way does the driveway face? North-facing holds ice for weeks",
+        "Was there ever air conditioning, and if so why was it removed?",
+        "Drive the route to YWAM at 8am — 8.4 min free-flow is tight"
       ],
       "addedAt": "2026-08-06"
     }
