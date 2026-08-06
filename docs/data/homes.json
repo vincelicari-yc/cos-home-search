@@ -304,7 +304,7 @@
       "address": "6520 Hawkeye Cir, Colorado Springs, CO 80919",
       "status": "active",
       "rejectedReason": null,
-      "verdict": "Genuinely the nicest house we've seen — Wolf and Thermador kitchen, cherry cabinets, Pikes Peak views off a wraparound deck, 5 beds, finished basement, cul-de-sac corner lot backing open space, and only $40/mo HOA. The problem isn't the house, it's the risk stack and the price position: Rockrimmon is named in the videos as BOTH a wildfire-insurance hotspot AND one of the worst areas for expansive-soil foundation damage, the roof is listed only as \"Other\" on a 1978 build, and at $599,900 you'd have $100 left against your ceiling. Worth pursuing — but get the insurance quote and a structural engineer before you fall for the view.",
+      "verdict": "The nicest house we've seen — Wolf and Thermador kitchen, cherry cabinets, Pikes Peak views off a wraparound deck, 5 beds, finished basement, cul-de-sac lot backing open space, $40/mo HOA — and the foundation has already been professionally repaired with papers and a lifetime guarantee. That matters enormously here: Rockrimmon is named in the videos as one of the worst expansive-soil areas, and a documented, warrantied repair is exactly what they say to look for. Two things left to settle: confirm the warranty actually TRANSFERS to you, and get the wildfire insurance quote, because Rockrimmon premiums can run to $15,000 a year. The roof is also still undisclosed on a 1978 build.",
       "listing": {
         "price": 599900,
         "beds": 5,
@@ -332,7 +332,8 @@
         "zillowUrl": "https://www.zillow.com/homedetails/6520-Hawkeye-Cir-Colorado-Springs-CO-80919/13568725_zpid/",
         "redfinUrl": null,
         "sourceOfTruth": "scraped",
-        "fetchedAt": "2026-08-06"
+        "fetchedAt": "2026-08-06",
+        "foundationRepair": "Professionally repaired, documented, lifetime guarantee (transferability to be confirmed)"
       },
       "priceHistory": [
         {
@@ -362,8 +363,8 @@
       },
       "scores": {
         "foundation": {
-          "score": 2,
-          "why": "Rockrimmon is named EXPLICITLY as one of the highest-risk expansive-soil areas — steep terrain plus clay plus mountain proximity makes foundation distress 'pretty common' there. 1978 build, no engineering report offered [T04]"
+          "score": 5,
+          "why": "Foundation has been professionally repaired with documentation and a lifetime guarantee. T04 calls this the BEST case in a soil-risk area — 'repaired, documented and warrantied... that prior repair is actually a positive. You know the problem has been addressed.' Scored 5 CONDITIONAL on the warranty transferring to the buyer; drops back to 2 if it does not [T04]"
         },
         "wildfire": {
           "score": 2,
@@ -386,8 +387,8 @@
           "why": "5 beds and 3 baths beats the 4/3 minimum, 2,990 sqft, finished basement, 0.26-acre corner lot, attached garage. Genuinely roomy with space to host [T08]"
         },
         "value": {
-          "score": 2,
-          "why": "$201/sqft and priced ABOVE the county's own actual value of $580,069. Already cut $20,100 and still unsold at 27 days. At $599,900 there is no cushion left for what the inspection finds [T05][T08]"
+          "score": 3,
+          "why": "Foundation work worth potentially tens of thousands is already done and warrantied, which is real value we don't have to fund [T04]. Still docked because it's priced $20k above the county's actual value of $580,069 with only $100 of headroom under the ceiling [T05][T08]"
         },
         "location": {
           "score": 4,
@@ -402,18 +403,22 @@
           "why": "No test mentioned and the basement is finished. El Paso County is EPA Zone 1, so assume it needs testing [BASE]"
         },
         "resale": {
-          "score": 4,
-          "why": "Rockrimmon is established and built-out, so no new construction caps resale — the main appreciation lever. FHA/VA eligibility widens the future buyer pool too [T08]"
+          "score": 5,
+          "why": "Built-out Rockrimmon with no new construction capping resale [T08], FHA/VA eligible, and now a documented foundation warranty — a genuine selling point in a neighbourhood where every buyer asks about soil [T04]"
         }
       },
       "flags": {
+        "warranty": {
+          "severity": "critical",
+          "text": "GET THE FOUNDATION PAPERS AND CONFIRM THE WARRANTY TRANSFERS TO YOU. A lifetime guarantee that only covers the current owner is worth nothing to us. Also confirm it covers the whole foundation, not just the repaired section, and ask whether a structural engineer signed off on the repair. This single question is now the most valuable thing to nail down on this house."
+        },
+        "drainage-cause": {
+          "severity": "warning",
+          "text": "A foundation repair fixes the symptom. Ask what caused the movement and whether the drainage was corrected too — nearly every foundation problem here starts as a water problem, and piers in one spot won't stop it recurring elsewhere if water is still being routed at the house."
+        },
         "wildfire": {
           "severity": "critical",
           "text": "Rockrimmon is named in the videos as a wildfire-risk area where premiums run as high as $15,000 a year, and this lot backs to open space — exactly the exposure pattern insurers price hardest. Get a written quote for this address BEFORE you tour. It could add $300-900 a month."
-        },
-        "soil": {
-          "severity": "critical",
-          "text": "Rockrimmon is called out specifically as one of the worst areas for expansive-soil foundation damage — steep terrain, heavy clay, close to the mountains. On a 1978 house this needs a structural engineer, not just a general inspector. One Rockrimmon buyer was quoted more than double their budgeted insurance at underwriting because of shifting ground."
         },
         "roof": {
           "severity": "critical",
@@ -450,6 +455,10 @@
         "competition": {
           "severity": "note",
           "text": "5,825 views and 593 saves in 27 days. A lot of eyes on it, so don't expect a deep discount to land uncontested."
+        },
+        "foundation-done": {
+          "severity": "note",
+          "text": "The foundation has already been professionally repaired, with paperwork and a lifetime guarantee. In Rockrimmon — named in the videos as one of the worst areas for expansive-soil damage — that turns the biggest single risk into a known, closed item. It also explains why FHA and VA are accepted here: an appraiser would have flagged an active structural problem."
         }
       },
       "monthly": {
@@ -463,16 +472,16 @@
         "note": "Assumes 20% down ($479,920 loan) at 6.5% over 30 years — confirm with a lender. THE INSURANCE LINE IS THE BIG UNKNOWN and is an estimate, not a quote. Rockrimmon is named as a wildfire-risk area: if it prices as interface property, expect $375-710/mo instead of $450, and the worst case cited in the videos is $15,000/yr, which would be $1,250/mo. That single line can swing the payment by $800. Zillow shows $3,719/mo, but its insurance figure is generic."
       },
       "offer": {
-        "suggested": 565000,
-        "rationale": "The county's own actual value is $580,069, it's already been cut once from $620,000, and it hasn't sold in 27 days during what's still decent season. Citywide, the average home sold $79k below the average list price. Most importantly you need to buy below ask here to preserve a reserve — a 1978 house with an undisclosed roof at the very top of budget is exactly the trap of buying something that only works if nothing goes wrong. Counterweight: 593 saves means real competition, so this is a serious offer rather than a lowball.",
+        "suggested": 570000,
+        "rationale": "The foundation being fixed and warrantied genuinely de-risks this house and justifies paying closer to the county's actual value of $580,069 than we otherwise would. It's still been cut once from $620,000 and hasn't sold in 27 days, and citywide the average home sold $79k below the average list price [T05]. Open at $570,000 with room to move toward $585,000 IF the warranty transfers and the roof checks out — but hold firm below that, because the roof and the 1978 plumbing are still unpriced and 593 saves means we shouldn't bid against ourselves.",
         "asks": [
-          "A Class 4 impact-resistant roof, specified as such — highest-value single ask, saves 20-30% on premium every year [T04]",
+          "The foundation repair file: engineer's report, permit, invoice, and the warranty document showing it transfers [T04]",
+          "A Class 4 impact-resistant roof, specified as such — 20-30% off the premium every year we own it [T04]",
           "Proof of insurability: a binder or written quote before the inspection deadline, given Rockrimmon's wildfire pricing [T04]",
-          "Enough inspection days for a structural engineer AND a sewer scope, not just a general inspection [T04]",
-          "Seller concessions toward closing costs, commonly $8,000-10,000 in this market [T05]",
-          "A rate buydown rather than a further price cut if they resist — often saves more per month [T05]"
+          "Enough inspection days for a sewer scope and an independent look at the repaired foundation [T04]",
+          "Seller concessions toward closing costs, commonly $8,000-10,000 in this market [T05]"
         ],
-        "reserveNeeded": 40000
+        "reserveNeeded": 30000
       },
       "photos": [
         {
@@ -482,9 +491,12 @@
         }
       ],
       "openQuestions": [
+        "DOES THE FOUNDATION WARRANTY TRANSFER TO US? Get it in writing — this is the whole ballgame",
+        "Does the warranty cover the entire foundation or only the repaired section?",
+        "Which company did the repair, what did they do (piers? underpinning?), and did a structural engineer sign off?",
+        "What caused the movement, and was the drainage corrected at the same time?",
         "Roof age, actual material, and permit — \"Other\" is not an answer",
         "Insurance quote for THIS address — the single biggest variable here",
-        "Has a structural engineer ever evaluated it? Rockrimmon soil makes this non-optional",
         "Supply pipe material — is it polybutylene? 1978 is the first year",
         "Sewer lateral material — scope it regardless",
         "Radon test result",

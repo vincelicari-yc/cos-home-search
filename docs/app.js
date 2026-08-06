@@ -180,6 +180,7 @@ function homeCard(h) {
     `<div class="dt"><span class="dt-k">${esc(k)}</span><span class="dt-v">${esc(v)}</span></div>`;
   const details = [
     detail('Flood zone', L.floodZone),
+    detail('Foundation', L.foundationRepair),
     detail('Roof', L.roofMaterial),
     detail('Basement', L.basement),
     detail('Heating / cooling', [L.heating, L.cooling].filter(Boolean).join(' · ') || null),
