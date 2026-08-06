@@ -400,3 +400,34 @@ h1, h2, h3 { line-height: 1.25; }
   width: 100%; margin-top: 10px; font-family: ui-monospace, Menlo, monospace;
   font-size: .78rem; resize: vertical;
 }
+
+/* paste field + Send */
+.dz-form { display: flex; gap: 8px; margin-top: 10px; }
+.dz-form input {
+  flex: 1; min-width: 0; font: inherit; font-size: .88rem; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 8px; padding: 8px 11px;
+}
+.dz-form input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.dz-form button { flex: 0 0 auto; }
+
+/* per-item status */
+.dz-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 3px; }
+.dz-chip {
+  font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  border-radius: 999px; padding: 2px 8px; background: var(--surface-2); color: var(--ink-3);
+}
+.dz-chip-queued    { background: var(--surface-2); color: var(--ink-3); }
+.dz-chip-analysing { background: var(--accent-soft); color: var(--accent); }
+.dz-chip-done      { background: var(--good-soft);   color: var(--good); }
+.dz-chip-failed    { background: var(--bad-soft);    color: var(--bad); }
+.dz-note { display: block; margin-top: 4px; font-size: .78rem; color: var(--ink-3); }
+
+.dz-st-analysing { border-color: var(--accent); }
+.dz-st-done      { border-color: var(--good); }
+.dz-st-failed    { border-color: var(--bad); }
+
+/* gentle pulse while a house is being worked on */
+@keyframes dzPulse { 0%,100% { opacity: 1 } 50% { opacity: .55 } }
+.dz-chip-analysing { animation: dzPulse 1.6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .dz-chip-analysing { animation: none; } }

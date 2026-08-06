@@ -192,8 +192,13 @@ window.COSDrop = (function () {
            aria-label="Drop a Zillow or Redfin link here to add a house">
         <div class="dz-icon" aria-hidden="true">&#8681;</div>
         <p class="dz-main">Drag a <strong>Zillow</strong> or <strong>Redfin</strong> link here</p>
-        <p class="dz-sub">…or click and paste one. You can also paste a plain address.</p>
+        <p class="dz-sub">…or paste it in the box below. A plain address works too.</p>
       </div>
+      <form class="dz-form" id="dz-form">
+        <input type="url" id="dz-input" inputmode="url" autocomplete="off" spellcheck="false"
+               placeholder="Paste a Zillow or Redfin link…" aria-label="Listing link or address">
+        <button type="submit" class="btn" id="dz-send">Send</button>
+      </form>
       <p class="dz-mode" id="dz-mode"></p>
       <div id="dz-queue"></div>`;
 
@@ -204,8 +209,9 @@ window.COSDrop = (function () {
 
     function renderMode() {
       modeEl.innerHTML = mode === 'local'
-        ? `<span class="dz-badge dz-badge-live">Connected</span> Dropped houses are saved straight
-           to <code>data/queue.json</code> — just tell Claude “process the queue”.`
+        ? `<span class="dz-badge dz-badge-live">Connected</span> Saved straight to
+           <code>data/queue.json</code>. If Claude's watcher is running these get picked up
+           automatically and the score appears here; otherwise just say “process the queue”.`
         : `<span class="dz-badge">Shared page</span> This page can't score a house on its own —
            Zillow blocks browsers. Queue them up here, then copy the request and send it to Claude.`;
     }
@@ -225,15 +231,23 @@ window.COSDrop = (function () {
             <button type="button" class="btn btn-ghost" id="dz-clear">Clear</button>
           </div>
         </div>
-        <ol class="dz-list">${queue.map((q, i) => `
-          <li>
+        <ol class="dz-list">${queue.map((q, i) => {
+          const st = q.status || 'queued';
+          const label = { queued: 'Waiting for Claude', analysing: 'Analysing now',
+                          done: 'Done', failed: 'Failed' }[st] || st;
+          return `
+          <li class="dz-st-${esc(st)}">
             <div>
               <span class="dz-addr">${esc(q.address || 'Address will come from the link')}</span>
-              ${q.url ? `<a class="dz-url" href="${esc(q.url)}" target="_blank"
-                    rel="noopener noreferrer">${esc((q.source || q.site || 'link'))} link</a>` : ''}
+              <span class="dz-meta">
+                <span class="dz-chip dz-chip-${esc(st)}">${esc(label)}</span>
+                ${q.url ? `<a class="dz-url" href="${esc(q.url)}" target="_blank"
+                      rel="noopener noreferrer">${esc(q.source || q.site || 'link')} link</a>` : ''}
+              </span>
+              ${q.note ? `<span class="dz-note">${esc(q.note)}</span>` : ''}
             </div>
             <button type="button" class="dz-x" data-i="${i}" aria-label="Remove">&times;</button>
-          </li>`).join('')}</ol>`;
+          </li>`; }).join('')}</ol>`;
 
       listEl.querySelectorAll('.dz-x').forEach(b => b.addEventListener('click', async () => {
         await remove(Number(b.dataset.i));
@@ -290,6 +304,43 @@ window.COSDrop = (function () {
       zone.classList.add('dz-ok');
       setTimeout(() => zone.classList.remove('dz-ok'), 900);
       render();
+      startPolling();
+    }
+
+    const form = root.querySelector('#dz-form');
+    const input = root.querySelector('#dz-input');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const v = input.value.trim();
+      if (!v) return;
+      input.value = '';
+      await accept(v);
+      startPolling();
+    });
+
+    /* While something is queued or mid-analysis, poll so the page reflects progress on its own.
+     * Also watches the homes fingerprint, so the moment a new analysis lands the card list
+     * refreshes without a manual reload. */
+    let poller = null, lastHomes = null;
+    function outstanding() {
+      return queue.some(q => !q.status || q.status === 'queued' || q.status === 'analysing');
+    }
+    function startPolling() {
+      if (mode !== 'local' || poller) return;
+      poller = setInterval(async () => {
+        try {
+          const d = await fetch('api/queue', { cache: 'no-store' }).then(r => r.json());
+          const changed = JSON.stringify(d.pending) !== JSON.stringify(queue);
+          queue = d.pending || [];
+          const fp = d.homes && `${d.homes.count}:${d.homes.mtime}`;
+          if (fp && lastHomes && fp !== lastHomes && window.COSApp && window.COSApp.reload) {
+            window.COSApp.reload();
+          }
+          if (fp) lastHomes = fp;
+          if (changed) render();
+          if (!outstanding()) { clearInterval(poller); poller = null; }
+        } catch { clearInterval(poller); poller = null; }
+      }, 4000);
     }
 
     ['dragenter', 'dragover'].forEach(ev => zone.addEventListener(ev, e => {
@@ -315,7 +366,7 @@ window.COSDrop = (function () {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zone.focus(); }
     });
 
-    detectServer().then(render);
+    detectServer().then(() => { render(); if (outstanding()) startPolling(); });
   }
 
   return { init, parseListing, addressFromSlug, requestText, _queue: () => queue };

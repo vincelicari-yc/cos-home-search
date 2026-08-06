@@ -428,4 +428,18 @@ function initTabs() {
   renderHomes();
   renderChecklist();
   renderArea();
+
+  /* Lets the drop zone pull fresh analysis in without a page reload, so a house scored a moment
+   * ago simply appears. */
+  window.COSApp = {
+    async reload() {
+      try {
+        const doc = await loadJSON('data/homes.json');
+        state.homes = doc.homes || [];
+        renderHomes();
+        initTourPicker();
+        if (state.map) { state.map.remove(); state.map = null; }
+      } catch (e) { console.warn('reload failed', e); }
+    },
+  };
 })();
