@@ -1,131 +1,80 @@
-# Colorado Springs Baseline Criteria
+# Baseline Knowledge — What's Left After the Transcripts
 
-> **This file is pre-transcript baseline knowledge, not derived from Vince's videos.**
-> It exists so there's something to score against before the transcripts land. Every item is
-> tagged `[BASE]`. As transcripts come in, items get confirmed (add the `[Tnn]` tag alongside
-> `[BASE]`), corrected, or deleted. **Transcripts win over this file** — they're the sources
-> Vince actually vetted. Anything still carrying only `[BASE]` after intake is unconfirmed and
-> should be treated as a lead to verify, not a fact.
+> **Most of this file has been superseded.** It began as pre-transcript baseline so there'd be
+> something to score against on day one. The eight transcripts then confirmed, sharpened, and
+> in places corrected it, and that material now lives in the files below with proper `[Tnn]`
+> attribution:
+>
+> - **Foundation, wildfire, flood, drainage/mold, roof/hail, aging systems, utilities, metro
+>   districts** → [`20-deal-breakers.md`](20-deal-breakers.md)
+> - **Sun and orientation, trees, storage, character** → [`50-value-and-livability.md`](50-value-and-livability.md)
+> - **Market timing, PCS cycle, negotiation** → [`40-market-and-negotiation.md`](40-market-and-negotiation.md)
+>
+> What remains here is the handful of items the transcripts **never addressed**. Everything below
+> carries only `[BASE]`, which means **no source Vince vetted brought it up** — treat these as
+> leads to verify rather than established facts.
 
-## 1. Expansive clay soil and foundation movement `[BASE]`
+---
 
-The single largest structural risk along the Front Range. Much of Colorado Springs sits on
-expansive bentonite clay that swells when wet and shrinks when dry, moving foundations
-seasonally. It's why COS inspections weight foundations so heavily.
+## Radon `[BASE]` — notable for its absence
 
-**Look for:**
-- Stair-step cracking in foundation walls or brick, especially at corners
-- Interior drywall cracks radiating from door and window corners
-- Doors and windows that stick or won't latch
-- Sloping or out-of-level floors — a marble test tells you a lot in 30 seconds
-- Basement slab heave, particularly under interior bearing walls
-- Prior underpinning, piering, or wall anchors — not automatically bad, but demands the
-  engineering paperwork and whatever warranty came with it
+**Not one of the eight transcripts mentioned radon.** That's worth recording, because it's
+otherwise a standard Colorado inspection item.
 
-**Ask:** Has a structural engineer ever evaluated this home? Is there a soils report from
-construction? Any repair history, and is the warranty transferable?
+El Paso County is **EPA Radon Zone 1**, the highest tier, and elevated readings are the norm here
+rather than the exception. Finished basements are exactly where bedrooms tend to go, which is the
+whole concern.
 
-**Cost if wrong:** Piering runs tens of thousands. This is the item most capable of turning
-a $575k purchase into a financial mistake.
+- **Look for:** an existing mitigation system — a sealed sump plus a vent pipe and inline fan
+  running up through the roofline
+- **Ask:** Has it been tested? What was the number? If mitigated, is there a post-mitigation test?
+- Mitigation is comparatively cheap, typically a low four figures, so this is a **negotiation
+  item, not a deal-breaker**
 
-## 2. Hail and roofs `[BASE]`
+Weighted at 3 in the rubric — kept because the underlying geology is real, lowered because no
+vetted source raised it and the fix is cheap.
 
-Colorado Springs sits in one of the most active hail corridors in the country. Roofs here are
-consumables, and insurance carriers know it.
+## Aging-systems specifics `[BASE]`
 
-**Look for:**
-- Roof age and material. Ask for the replacement date and the permit.
-- Class 4 impact-resistant shingles — they cut premiums meaningfully and survive more storms
-- Soft metal bruising (gutters, vents, flashing, AC condenser fins) reveals hail history even
-  when shingles look passable
-- Multiple layers of shingles, a sign of cheap prior work
+The transcripts confirmed that 1970s–80s stock carries deferred maintenance and that renovation
+runs expensive (`[T06]`), but never named these particular failure modes. The table lives in
+[`20-deal-breakers.md`](20-deal-breakers.md#6-aging-systems-in-1970s80s-stock); the items still
+resting on baseline alone are:
 
-**Ask:** Roof age? Class 4? Any hail claims — paid or denied? Which carrier, and what's the
-current premium and deductible? Some COS policies carry a separate, much higher wind/hail
-deductible, which is easy to miss until you file.
+- **Aluminum branch wiring** (~1965–1975) — fire risk at connections; insurers may refuse or
+  require AlumiConn/COPALUM remediation
+- **Polybutylene supply pipe** (~1978–1995) — gray or blue plastic, fails without warning
+- **Galvanized supply pipe** (pre-1960s) — corrodes shut, kills water pressure
+- **Federal Pacific / Zinsco panels** (1950s–80s) — breakers that fail to trip; full replacement
+- **Cast-iron or clay sewer laterals** (pre-1980) — root intrusion and collapse. **Always scope
+  the sewer** regardless of what's claimed.
 
-## 3. Radon `[BASE]`
+These are well-established nationally, so the confidence is reasonable even without transcript
+backing — but verify per house rather than assuming by build year.
 
-El Paso County is **EPA Radon Zone 1** — the highest tier. Elevated readings are the norm
-here, not the exception, and finished basements are exactly where bedrooms tend to go.
+## Small items with no transcript coverage `[BASE]`
 
-**Look for:** An existing mitigation system (a sealed sump plus a vent pipe and inline fan
-running up through the roofline).
+- **Egress windows.** A basement bedroom only counts toward our 4-bedroom minimum with a proper
+  egress window.
+- **Cell signal.** Check bars in the basement and back bedrooms — thick 1970s construction and
+  hillside terrain both hurt.
+- **Altitude and combustion.** Furnaces and water heaters need altitude-appropriate tuning at
+  6,000+ ft.
+- **East-facing living space** gets the mountain morning light many people want.
+- **Well and septic** become more likely at the Woodmen Valley and outer edges of our radius —
+  confirm which utilities actually serve the parcel.
 
-**Ask:** Has it been tested? What was the number? If mitigated, is there a post-mitigation
-test result? Mitigation is comparatively cheap — typically a low four figures — so this is a
-negotiation item, not a deal-breaker.
+## Open questions the transcripts did *not* answer
 
-## 4. Wildfire risk and insurability `[BASE]`
+Worth asking a local agent directly, since eight videos didn't cover them:
 
-The 2012 Waldo Canyon Fire burned into **Mountain Shadows**, destroying hundreds of homes —
-and Mountain Shadows is inside our 10-minute radius. Foothill-interface neighborhoods
-(Mountain Shadows, Peregrine, Cedar Heights, Pinecliff) carry ongoing risk that now shows up
-in the insurance market as much as in the hazard maps.
-
-**Look for:** Defensible space, roof and deck materials, vegetation against the structure,
-and how many ways there are out of the neighborhood.
-
-**Ask:** **Get an actual insurance quote before the inspection deadline.** Carriers have been
-non-renewing and surcharging in these zones, and an uninsurable house is an unbuyable house.
-This can add hundreds a month and reshape what's affordable.
-
-## 5. Aging systems in 1970s–80s stock `[BASE]`
-
-Our budget lands squarely in this era, which carries a known cluster:
-
-| Issue | Era | Why it matters |
-| --- | --- | --- |
-| Aluminum branch wiring | ~1965–1975 | Fire risk at connections. Insurers may refuse or require remediation (AlumiConn/COPALUM). |
-| Polybutylene supply pipe | ~1978–1995 | Gray/blue plastic. Fails without warning. Often uninsurable. |
-| Galvanized supply pipe | pre-1960s | Corrodes shut, kills water pressure. |
-| Cast-iron / clay sewer lateral | pre-1980 | Root intrusion and collapse. **Always scope the sewer.** |
-| Original furnace / water heater | any | 15–20 yr life; altitude affects combustion tuning. |
-| Federal Pacific / Zinsco panel | 1950s–80s | Breakers that fail to trip. Full replacement. |
-
-**Always:** sewer scope, and a dedicated electrical panel look.
-
-## 6. Drainage and grading `[BASE]`
-
-Directly upstream of item 1 — nearly every foundation problem here starts as a water problem.
-
-**Look for:** ground sloping *away* from the house on all four sides; downspouts extended well
-clear of the foundation; window wells with drains; no uphill neighbor routing water at you;
-irrigation heads not spraying the foundation; and mature trees far enough off the walls.
-
-## 7. Water and utilities `[BASE]`
-
-Colorado Springs Utilities is city-owned and unusually provides all four services (electric,
-gas, water, wastewater) on one bill — so ask for **12 months of actual bills**, which is a
-cleaner read on the home's real efficiency than any listing claim.
-
-**Also check:** whether the property is on city water/sewer or a well and septic (more likely
-at the Cedar Heights / Woodmen Valley edges), and whether a **metro district** applies —
-these special taxing districts can add substantially to the mill levy and are easy to miss
-because they aren't an HOA and don't show up as dues.
-
-## 8. Sun, altitude, and orientation `[BASE]`
-
-Genuinely a Colorado concern rather than a quirk. At 6,000+ feet the UV load is punishing on
-decks, paint, seals, and shingles.
-
-- **North-facing driveways and walks hold ice for weeks** in winter — a daily-life issue
-  worth real weight, especially on a slope
-- South and west exposures fade finishes and cook west-facing rooms in summer
-- East-facing living space gets the mountain morning light many people want
-
-## 9. Market context `[BASE]`
-
-Colorado Springs demand is shaped by the military presence — Fort Carson, Peterson SFB,
-Schriever SFB, USAFA, and Space Command — which means **PCS season (roughly May–August)
-tightens inventory and hardens sellers**. Buying in the fall or winter usually means less
-competition and more negotiating room. We're entering the market in August, so the tail of
-PCS season is a factor right now; expect conditions to ease into the fall.
-
-## Open questions for the transcripts to answer
-
-- Which specific neighborhoods do the videos favor or warn about?
-- Any named local inspectors, structural engineers, or agents worth using?
-- Local negotiation norms — is asking for concessions over repairs standard here?
-- Anything about well/water rights that applies at our radius edges?
-- Any current-market read that would change our offer strategy at $600k?
+- **Named local inspectors, structural engineers, or sewer-scope outfits worth using.** `[T04]`
+  and `[T06]` both allude to having trusted contractors but never name any.
+- **Whether asking for concessions over repairs is the local norm** at our price point
+  specifically. `[T05]` covers concessions generally but is aimed at the $800k+ market.
+- **Radon prevalence and typical mitigation cost** in the 80907 / west-central area.
+- **Well and water rights** at the western and northern edges of our radius.
+- **Whether D-11's ratings are actually depressing resale** in Pope's Bluff, Holland Park, and
+  Vista Grande, or whether proximity to Garden of the Gods and the built-out supply picture
+  offsets it. `[T07]` asserts districts matter for resale; `[T08]` asserts limited supply matters
+  more. For our specific streets, nobody said.

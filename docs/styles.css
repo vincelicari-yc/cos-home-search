@@ -270,6 +270,26 @@ h1, h2, h3 { line-height: 1.25; }
 .note-card h3 { margin: 0 0 5px; font-size: .95rem; color: var(--accent); }
 .note-card p { margin: 0; font-size: .88rem; }
 
+/* The two must-do items, called out harder than a normal note */
+.note-card-alert {
+  background: var(--bad-soft); border-color: var(--bad); margin: 0 0 24px;
+}
+.note-card-alert h3 { color: var(--bad); font-size: 1rem; }
+.note-card-alert ol { margin: 10px 0 0; padding-left: 22px; font-size: .88rem; }
+.note-card-alert li + li { margin-top: 7px; }
+
+/* Findings cards */
+.findings { display: grid; gap: 14px; margin-top: 16px; }
+@media (min-width: 800px) { .findings { grid-template-columns: repeat(2, 1fr); } }
+.finding {
+  background: var(--surface); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 14px 16px; box-shadow: var(--shadow);
+}
+.finding h3 { margin: 0 0 6px; font-size: .95rem; letter-spacing: -.01em; }
+.finding p { margin: 0; font-size: .87rem; color: var(--ink-2); }
+.finding strong { color: var(--ink); }
+
 /* ---------- footer & dialog ---------- */
 .foot { padding: 20px 16px 30px; color: var(--ink-3); font-size: .78rem; text-align: center; }
 .foot p { margin: 0; }

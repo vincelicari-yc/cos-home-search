@@ -25,6 +25,22 @@ for f in "${DATA_FILES[@]}"; do
   fi
 done
 
+# Cache-bust the CSS and JS. Without this, family members who've already opened the page get
+# a stale app.js from browser cache after every update and quietly see the old site.
+STAMP="$(date +%Y%m%d%H%M)"
+python3 - "$STAMP" <<'PY'
+import re, sys, pathlib
+stamp = sys.argv[1]
+p = pathlib.Path("docs/index.html")
+html = p.read_text()
+new, n = re.subn(r'(href|src)="((?:styles\.css|app\.js|config\.js))\?v=[^"]*"',
+                 lambda m: f'{m.group(1)}="{m.group(2)}?v={stamp}"', html)
+if n == 0:
+    sys.exit("ERROR: found no ?v= asset refs to stamp in docs/index.html")
+p.write_text(new)
+print(f"Cache-busted {n} asset refs -> v={stamp}")
+PY
+
 # The whole point of the site: findable by the family, not by Google.
 grep -q 'noindex' docs/index.html || { echo "ERROR: noindex meta tag missing from docs/index.html"; exit 1; }
 [[ -f docs/robots.txt ]] || { echo "ERROR: docs/robots.txt missing"; exit 1; }

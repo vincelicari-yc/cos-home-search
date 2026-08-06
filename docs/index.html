@@ -13,7 +13,7 @@
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=202608061815">
 </head>
 <body>
 
@@ -107,15 +107,106 @@
 
   <!-- ============ THE AREA ============ -->
   <section id="panel-area" class="panel" role="tabpanel">
+
+    <div class="note-card note-card-alert">
+      <h3>⚠️ Do these two things before touring any house</h3>
+      <p>Either one can rule out a house on its own, and both change what we can afford to
+      borrow — so they come <em>before</em> falling in love with a place, not after.</p>
+      <ol>
+        <li><strong>Get an insurance quote for that exact address.</strong> In wildfire zones
+        near the foothills, premiums run <strong>$4,500–$8,500 a year</strong> — that's
+        $300–600 a month on top of the mortgage. Some insurers won't write these addresses at
+        all. The Zillow monthly estimate does not include this.</li>
+        <li><strong>Pull the FEMA flood map.</strong> Monument Creek runs right through our
+        search area. Flood insurance adds $1,000–$5,000 a year, and a flood-zone home can
+        appraise lower, which complicates the loan.</li>
+      </ol>
+    </div>
+
     <h2>What's actually within 10 minutes</h2>
     <p class="muted">Measured driving times from 505 Popes Bluff Trail. These are free-flow
     estimates with no traffic — at 8am or 5pm add roughly 15–25% on this corridor.</p>
     <div id="area-table"></div>
+
     <div class="note-card">
       <h3>Before you make an offer</h3>
       <p>Drive the real route at the hour you'd really drive it. No map tool replaces that.
       Anything measured over about 8.5 minutes is at genuine risk of breaking the 10-minute
       rule in real traffic.</p>
+    </div>
+
+    <h2 style="margin-top:32px">What we've learned so far</h2>
+    <p class="muted">From eight videos on the Colorado Springs market. The full write-up lives
+    in the <code>criteria/</code> folder in the repo.</p>
+
+    <div class="findings">
+      <article class="finding">
+        <h3>Mountain Shadows is close, and the riskiest thing in our radius</h3>
+        <p>It's 6.6 minutes away with mountain views, so it's tempting. But 100% of properties
+        there carry wildfire risk over the next 30 years, and 23% carry severe flood risk on top
+        of it — the 2012 Waldo Canyon fire removed the vegetation that used to absorb runoff.
+        Insurance has gone from $1,800–2,800 a year to <strong>$4,500–8,500</strong>. The median
+        sale price is about <strong>$620,000</strong>, which is over our ceiling before insurance
+        is even counted. Not ruled out — but get the quote first.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Rockrimmon, Peregrine, and Cedar Heights are out</h3>
+        <p>All three came up in the videos as places to consider, and all three fail our
+        10-minute rule once actually measured: 11.9, 11.2, and 16.7 minutes. Peregrine also
+        starts in the high $600s. Cedar Heights' gated, winding approach costs far more time
+        than its 7 miles suggests.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Vista Grande may be the best value in the city right now</h3>
+        <p>It's 3.3 minutes from YWAM, and its zip code (80918) was named as having the most
+        price cuts, the most days on market, and <strong>the most negotiating room</strong> of
+        anywhere in Colorado Springs. The tradeoff is slower near-term appreciation — which
+        matters less for a home we plan to live in. Worth watching closely.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Our area is on the right side of the market shift</h3>
+        <p>The strongest claim in the batch: if you buy where builders can easily put up more
+        homes, new construction caps how much your resale can appreciate. The advice was to buy
+        in built-out west-side neighborhoods — which is exactly our whole search radius. Nothing
+        new is being built here to compete with us.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Ask for a Class 4 roof, not just "a new roof"</h3>
+        <p>Colorado Springs gets 5.5 hail days a year, and hail is 60–70% of all Colorado
+        insurance claims. A Class 4 impact-resistant roof cuts the insurance premium
+        <strong>20–30% every year we own the house</strong>. Also worth knowing: insurers are
+        shifting older roofs to "actual cash value," meaning an aging roof may not be covered
+        for full replacement.</p>
+      </article>
+
+      <article class="finding">
+        <h3>A repaired foundation is a good sign, not a red flag</h3>
+        <p>About 25% of Colorado Springs homes have a foundation issue at some point — the clay
+        soil here swells up to 20% in volume when wet. The best buy in a soil-risk area is one
+        where the work is already <strong>done, documented, and warrantied</strong>. Ask whether
+        the warranty transfers.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Asking prices are running about $79k above reality</h3>
+        <p>In early 2026 the average listing price was $618,000 while the average home actually
+        sold for $540,000. Sellers are pricing at 2022 levels and buyers are paying 2026 prices.
+        Offering under list is normal here right now, not insulting — and contract fallout is at
+        an all-time high because sellers won't fix things.</p>
+      </article>
+
+      <article class="finding">
+        <h3>Check who sends the water bill</h3>
+        <p>Small question, big number. If Colorado Springs Utilities covers all four services on
+        one bill, rates are among the most competitive in the state. A private water co-op, or
+        services split across providers, can add <strong>hundreds of dollars a month</strong>.
+        Same for metro districts — they aren't an HOA, don't show up as dues, and quietly raise
+        the tax bill.</p>
+      </article>
     </div>
   </section>
 
@@ -140,7 +231,7 @@
 </dialog>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
+<script src="config.js?v=202608061815"></script>
+<script src="app.js?v=202608061815"></script>
 </body>
 </html>

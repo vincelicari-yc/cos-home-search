@@ -29,9 +29,11 @@ not a low score. Full detail in `criteria/00-search-parameters.md`.
 
 ## Transcript intake workflow
 
-When Vince pastes a transcript, do all of the following in one pass:
+Transcripts may arrive one at a time or in a batch. When Vince pastes one, do all of the
+following in one pass:
 
-1. **Save it verbatim** to `transcripts/NN-slug.md` with YAML frontmatter:
+1. **Record it** in `transcripts/`. For a single transcript, save it verbatim to
+   `transcripts/NN-slug.md` with YAML frontmatter:
    ```yaml
    ---
    title: <video title as given, or inferred from content>
@@ -41,7 +43,16 @@ When Vince pastes a transcript, do all of the following in one pass:
    topics: [foundation, hail, radon, negotiation, ...]
    ---
    ```
-   Do not clean up, summarize, or trim the transcript body. It is the audit trail.
+   Do not clean up, summarize, or trim the body. It is the audit trail.
+
+   For a **large batch**, re-emitting every word costs more than it's worth, so instead log each
+   video in `transcripts/00-index.md` with its metadata plus a dense, faithful extraction of
+   every specific claim, figure, and recommendation — which is what makes the trail *checkable*.
+   **Say plainly in the file and to Vince that the verbatim text wasn't saved**, and offer to
+   preserve it if he wants. Never imply verbatim text exists when it doesn't.
+
+   Always assign a `[Tnn]` number, in the order received, and keep it stable — the criteria files
+   cite it.
 
 2. **Extract every actionable item** into the right `criteria/` file. An actionable item is
    anything that could change a go/no-go decision, a question to ask, or a dollar figure.

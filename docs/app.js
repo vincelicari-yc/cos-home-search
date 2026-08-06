@@ -41,6 +41,13 @@ function esc(s) {
 
 const money = n => n == null ? '—' : '$' + Number(n).toLocaleString('en-US');
 
+/** Strip transcript provenance tags — [T04], [BASE], [T04][T06] — from family-facing text.
+ *  They stay in the JSON so any claim can be traced back to the video that made it. */
+const stripTags = s => String(s == null ? '' : s)
+  .replace(/\s*\[(?:T\d{2}|BASE)\]/g, '')
+  .replace(/\s+([.,;:!?])/g, '$1')
+  .trim();
+
 function relTime(iso) {
   const then = new Date(iso).getTime();
   if (!Number.isFinite(then)) return '';
@@ -234,7 +241,7 @@ function homeCard(h) {
 
   const flags = Object.values(h.flags || {})
     .filter(f => f && f.text)
-    .map(f => `<div class="flag flag-${esc(f.severity || 'note')}">${esc(f.text)}</div>`).join('');
+    .map(f => `<div class="flag flag-${esc(f.severity || 'note')}">${esc(stripTags(f.text))}</div>`).join('');
 
   const links = [
     L.zillowUrl && `<a class="btn btn-ghost" href="${esc(L.zillowUrl)}" target="_blank" rel="noopener noreferrer">Zillow</a>`,
@@ -254,7 +261,7 @@ function homeCard(h) {
         ${scoreBox}
       </div>
 
-      ${h.rejectedReason ? `<div class="flag flag-critical" style="margin-top:10px">${esc(h.rejectedReason)}</div>` : ''}
+      ${h.rejectedReason ? `<div class="flag flag-critical" style="margin-top:10px">${esc(stripTags(h.rejectedReason))}</div>` : ''}
       <div class="facts">${facts}</div>
       ${flags ? `<div class="flags">${flags}</div>` : ''}
       ${!sc.rejected && sc.total != null && sc.known < sc.of
@@ -262,7 +269,7 @@ function homeCard(h) {
       ${!sc.rejected && sc.total == null
         ? `<p class="confidence">Not scored yet.</p>` : ''}
       ${(h.openQuestions || []).length
-        ? `<p class="confidence">Open questions: ${esc(h.openQuestions.join(' · '))}</p>` : ''}
+        ? `<p class="confidence">Open questions: ${esc(stripTags(h.openQuestions.join(' · ')))}</p>` : ''}
 
       <div class="home-links">${links}</div>
 
@@ -404,12 +411,12 @@ function renderChecklist() {
       total++; if (on) checked++;
       return `<li><label class="check sev-${esc(it.severity)} ${on ? 'done' : ''}">
         <input type="checkbox" data-key="${esc(key)}" ${on ? 'checked' : ''}>
-        <span>${esc(it.text)}</span></label></li>`;
+        <span>${esc(stripTags(it.text))}</span></label></li>`;
     }).join('');
     const secDone = sec.items.filter((_, i) => done[`${sec.id}.${i}`]).length;
     return `<details class="section" ${secDone < sec.items.length ? 'open' : ''}>
       <summary>${esc(sec.title)} <span class="section-count">${secDone}/${sec.items.length}</span></summary>
-      <p class="section-intro">${esc(sec.intro)}</p>
+      <p class="section-intro">${esc(stripTags(sec.intro))}</p>
       <ul class="check-list">${items}</ul>
     </details>`;
   }).join('');
