@@ -304,7 +304,7 @@
       "address": "6520 Hawkeye Cir, Colorado Springs, CO 80919",
       "status": "active",
       "rejectedReason": null,
-      "verdict": "The nicest house we've seen — Wolf and Thermador kitchen, cherry cabinets, Pikes Peak views off a wraparound deck, 5 beds, finished basement, cul-de-sac lot backing open space, $40/mo HOA — and the foundation has already been professionally repaired with papers and a lifetime guarantee. That matters enormously here: Rockrimmon is named in the videos as one of the worst expansive-soil areas, and a documented, warrantied repair is exactly what they say to look for. Two things left to settle: confirm the warranty actually TRANSFERS to you, and get the wildfire insurance quote, because Rockrimmon premiums can run to $15,000 a year. The roof is also still undisclosed on a 1978 build.",
+      "verdict": "The nicest house we've seen, and the only one where the foundation question is already closed — professionally repaired, documented, lifetime warranty that transfers to you. That matters enormously in Rockrimmon, which the videos name as one of the worst expansive-soil areas. It scores 70 today, but that's held down by two UNKNOWNS rather than by faults: the wildfire insurance quote and the roof age. Answer those two well and it lands around 84 and becomes the clear front-runner. Answer them badly and it's the most expensive house here with $100 of headroom. Make those two calls before you tour.",
       "listing": {
         "price": 599900,
         "beds": 5,
@@ -375,8 +375,8 @@
           "why": "FEMA Zone X unshaded, minimal-risk — the cleanest flood read we've had. Offset slightly because the basement is finished, so any past intrusion is hidden behind finishes [T04]"
         },
         "roof": {
-          "score": 1,
-          "why": "Material listed only as 'Other' with no age given, on a 1978 house. Definitely not Class 4, so no premium discount, in a city with 5.5 hail days a year [T04]"
+          "score": 2,
+          "why": "Material is listed only as 'Other' with no age, on a 1978 house. That's missing information rather than evidence of a bad roof, so it's scored as 'assume a replacement in the reserve and no Class 4 discount' rather than as damage. Get the age and permit — this is the single cheapest question that could move this house's score [T04]"
         },
         "systems": {
           "score": 2,
@@ -459,6 +459,10 @@
         "foundation-done": {
           "severity": "note",
           "text": "The foundation has already been professionally repaired, with paperwork and a lifetime guarantee. In Rockrimmon — named in the videos as one of the worst areas for expansive-soil damage — that turns the biggest single risk into a known, closed item. It also explains why FHA and VA are accepted here: an appraiser would have flagged an active structural problem."
+        },
+        "upside": {
+          "severity": "note",
+          "text": "This house is two answers away from being the clear leader. Its score is held down almost entirely by two UNKNOWNS rather than by anything known to be wrong: the wildfire insurance quote and the roof age. The foundation — normally the biggest risk in Rockrimmon — is already resolved and warrantied. If the insurance prices normally and the roof turns out to be recent, this scores about 84 and becomes the strongest candidate we have. Both questions can be answered in a couple of phone calls."
         }
       },
       "monthly": {
