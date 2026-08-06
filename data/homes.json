@@ -918,6 +918,209 @@
         "Drive the route to YWAM at 8am — 5.5 min free-flow should hold up well, but confirm"
       ],
       "addedAt": "2026-08-06"
+    },
+    {
+      "id": "181-del-oro-cir",
+      "address": "181 Del Oro Cir, Colorado Springs, CO 80919",
+      "status": "active",
+      "rejectedReason": null,
+      "verdict": "Essentially Hawkeye Cir's sibling — same Rockrimmon neighbourhood, same 1978 build, also backing open space — for $50,000 less. But it's missing the three things that justify Hawkeye's price: no documented foundation repair, NO air conditioning at all, and an interior the listing itself says is 'ready for cosmetic updates'. It's been listed two days, which is the least flexible a seller ever is. Worth watching rather than chasing — if it's still there in a month it'll be cut, the way Chutney went $559k to $544k.",
+      "listing": {
+        "price": 550000,
+        "beds": 4,
+        "baths": 4,
+        "sqft": 2738,
+        "lotSqft": 9583,
+        "yearBuilt": 1978,
+        "style": "2-story",
+        "pricePerSqft": 201,
+        "hoaMonthly": 0,
+        "secondHoaMonthly": null,
+        "metroDistrict": null,
+        "annualTax": 2047,
+        "taxAssessedValue": 575286,
+        "daysOnMarket": 2,
+        "roofMaterial": "Composite Shingle (age not stated)",
+        "foundationRepair": null,
+        "basement": "Partially finished",
+        "heating": "Forced Air, Natural Gas",
+        "cooling": "NONE — no air conditioning",
+        "water": "Municipal (Colorado Springs Utilities)",
+        "floodZone": "FEMA Zone X (unshaded) — minimal-risk flood area",
+        "listingTerms": "Cash, Conventional, FHA, VA Loan — all accepted",
+        "walkScore": 36,
+        "mlsNumber": "4084468",
+        "zillowUrl": "https://www.zillow.com/homedetails/181-Del-Oro-Cir-Colorado-Springs-CO-80919/13579816_zpid/",
+        "redfinUrl": null,
+        "sourceOfTruth": "scraped",
+        "fetchedAt": "2026-08-07"
+      },
+      "priceHistory": [
+        {
+          "date": "2026-08-05",
+          "event": "Listed for sale (no cuts yet)",
+          "price": 550000
+        }
+      ],
+      "geo": {
+        "lat": 38.923124,
+        "lon": -104.823156,
+        "neighborhood": "Rockrimmon (southeast, near Hawkeye)",
+        "driveMinutesToAnchor": 6.6,
+        "driveMilesToAnchor": 2.7,
+        "routedAt": "2026-08-07"
+      },
+      "schools": {
+        "district": "Academy District 20 (per listing)",
+        "elementary": null,
+        "middle": null,
+        "high": null
+      },
+      "scores": {
+        "foundation": {
+          "score": 2,
+          "why": "Rockrimmon is named EXPLICITLY as one of the worst expansive-soil areas — steep terrain, heavy clay, close to the mountains, where foundation distress is 'pretty common'. 1978 build, no engineering report and no repair history offered. Unlike Hawkeye there is no warranty here [T04]"
+        },
+        "wildfire": {
+          "score": 2,
+          "why": "Rockrimmon is named among the wildfire-risk areas where premiums reach $15,000/yr, and this lot BACKS DIRECTLY ONTO OPEN SPACE with mature trees — the exposure pattern insurers price hardest. No documented mitigation [T04][T05]"
+        },
+        "water": {
+          "score": 4,
+          "why": "FEMA Zone X unshaded, minimal-risk — the clean end of the scale. Docked because the basement is partly finished and backing to open space raises the question of where uphill runoff goes [T04]"
+        },
+        "roof": {
+          "score": 1,
+          "why": "Composite shingle with no age stated on a 48-year-old house, and the listing admits deferred cosmetic work. Not Class 4, so no premium discount [T04]"
+        },
+        "systems": {
+          "score": 1,
+          "why": "1978 is the FIRST year of polybutylene supply pipe, and clay or cast-iron sewer is likely pre-1980. Worse, there is NO air conditioning — an $8-15k retrofit. 'Original character' implies original mechanicals too [T04]"
+        },
+        "layout": {
+          "score": 4,
+          "why": "4 beds and 4 baths across 2,738 sqft on a 0.22-acre lot backing open space, with a fireplace. Docked because the basement is only partly finished and the interior needs updating [T08]"
+        },
+        "value": {
+          "score": 3,
+          "why": "$550k against the county's actual value of $575,286, so $25k under. But cosmetic updates, no A/C and an unknown roof are all unpriced, and it leaves only $50k under our ceiling. Listed 2 days ago at full ask with no negotiating history [T05][T08]"
+        },
+        "location": {
+          "score": 4,
+          "why": "6.6 min to YWAM, cul-de-sac, backs open space with no neighbours behind, mature trees, walking distance to Ute Valley Park and trails. Docked for Walk Score 36 and unknown driveway/sun orientation [T07]"
+        },
+        "carrying": {
+          "score": 4,
+          "why": "No HOA or metro district stated, municipal water on one CSU bill. Docked because the tax figure is inconsistent — the listing says $1,658/yr but county history shows $2,047 paid in 2024, a 46% jump on 2023 [T07][T06]"
+        },
+        "radon": {
+          "score": null,
+          "why": "No test mentioned; partly finished basement. El Paso County is EPA Zone 1 [BASE]"
+        },
+        "resale": {
+          "score": 5,
+          "why": "Rockrimmon is established and built-out so no new construction caps resale [T08], it's District 20 which holds price better when the market cools [T07], it backs open space, and FHA/VA are accepted"
+        }
+      },
+      "flags": {
+        "foundation": {
+          "severity": "critical",
+          "text": "Rockrimmon is called out specifically as one of the worst areas for expansive-soil foundation damage, and this is a 1978 house with no engineering report and no repair history offered. Hawkeye Cir has a documented, warrantied foundation repair; this one has nothing. Budget for a structural engineer, not just a general inspector."
+        },
+        "wildfire": {
+          "severity": "critical",
+          "text": "It backs directly onto open space in Rockrimmon — the exact exposure insurers price hardest, in a neighbourhood the videos name as running up to $15,000 a year. That's the same open-space view that makes the lot lovely. Get a written quote for this address before you tour."
+        },
+        "no-ac": {
+          "severity": "critical",
+          "text": "There is NO air conditioning. Forced-air heat, but cooling is listed as \"None\". Retrofitting central air runs roughly $8,000-15,000 at this size."
+        },
+        "era": {
+          "severity": "warning",
+          "text": "1978 is the first year polybutylene supply pipe was used — it fails without warning and is often uninsurable — and a clay or cast-iron sewer lateral is likely at that age. Identify the pipe material and scope the sewer."
+        },
+        "roof": {
+          "severity": "warning",
+          "text": "Composite shingle, no age given, on a 48-year-old house. Budget $11,000-25,000, and it won't be Class 4 so there's no insurance discount either."
+        },
+        "needs-work": {
+          "severity": "warning",
+          "text": "The listing says it \"reflects its original character and is ready for cosmetic updates\" and pitches it as a renovation project. That's the seller telling you it needs money. Price the work before you offer, not after."
+        },
+        "fresh-listing": {
+          "severity": "warning",
+          "text": "Listed only two days ago at full ask with no price history. This is the least flexible a seller ever is. If it's still available in 30-45 days expect a cut — Chutney Ct went from $559k to $544k over 83 days."
+        },
+        "tax": {
+          "severity": "warning",
+          "text": "The tax numbers don't agree: the listing says $1,658 a year, but county records show $2,047 actually paid in 2024, up 46% from 2023. Confirm which figure is current before you budget the payment."
+        },
+        "stucco": {
+          "severity": "warning",
+          "text": "Stucco exterior. Check it closely for hail pock marks and cracking — a known tell in this city."
+        },
+        "flood-clean": {
+          "severity": "note",
+          "text": "Flood risk is clean: FEMA Zone X unshaded, minimal-risk."
+        },
+        "d20": {
+          "severity": "note",
+          "text": "District 20 schools. You're homeschooling so it doesn't affect daily life, but D-20 homes hold their price better when the market cools — it helps whenever you sell."
+        },
+        "setting": {
+          "severity": "note",
+          "text": "The setting is genuinely good: cul-de-sac, no neighbours behind, mature trees, and walking access to Ute Valley Park and the trail network."
+        },
+        "under-county": {
+          "severity": "note",
+          "text": "Priced $25,286 below the county's own valuation of $575,286."
+        }
+      },
+      "monthly": {
+        "principalInterest": 2780,
+        "propertyTax": 171,
+        "insuranceEstimate": 450,
+        "insuranceIsQuote": false,
+        "hoa": 0,
+        "metroDistrict": 0,
+        "total": 3401,
+        "note": "Assumes 20% down ($440,000 loan) at 6.5% over 30 years — confirm with a lender. Property tax uses the $2,047 the county shows actually paid in 2024, not the listing's lower $1,658. THE INSURANCE LINE IS THE BIG UNKNOWN and is an estimate, not a quote: Rockrimmon backing open space could price at $375-710/mo, and the worst case cited in the videos is $15,000/yr, which would be $1,250/mo. Does not include adding air conditioning, a one-off $8-15k."
+      },
+      "offer": {
+        "suggested": 520000,
+        "rationale": "Two days on market means the seller has no reason to move yet, so an offer now is unlikely to land — and that's genuinely useful information. $520,000 reflects the county value less the deferred items (no A/C, unknown roof, cosmetic work), but the stronger play is probably patience: it's priced like a finished house and it isn't one. Watch it for 30-45 days. Chutney Ct became interesting precisely because it sat and got cut three times.",
+        "asks": [
+          "Proof of insurability — a written binder or quote before the inspection deadline, given Rockrimmon plus open space behind [T04]",
+          "Enough inspection days for a structural engineer AND a sewer scope, not just a general inspection [T04]",
+          "Roof age, material and permit in writing; a Class 4 replacement if it's due [T04]",
+          "Identification of the supply pipe material — 1978 puts polybutylene in play [T04]",
+          "A credit toward central air conditioning, or a price reduction reflecting the $8-15k [T05]"
+        ],
+        "reserveNeeded": 45000
+      },
+      "photos": [
+        {
+          "url": "https://photos.zillowstatic.com/fp/0a2c1f04a290f3caa0d4c5311d94f23e-cc_ft_960.jpg",
+          "caption": "181 Del Oro Cir — front",
+          "credit": "Zillow listing"
+        }
+      ],
+      "openQuestions": [
+        "Insurance quote for this exact address — Rockrimmon backing open space is the worst combination for premiums",
+        "Has a structural engineer ever evaluated it? Any foundation repair history at all?",
+        "Roof age, material and permit",
+        "Supply pipe material — is it polybutylene? 1978 is the first year",
+        "Sewer lateral material — scope it",
+        "Which tax figure is current, $1,658 or the $2,047 the county shows paid in 2024?",
+        "Real quote to add central air conditioning",
+        "What exactly do the 'cosmetic updates' amount to? Get a contractor walkthrough",
+        "Radon test result",
+        "Confirm no HOA and no metro district on this parcel",
+        "Which way does the driveway face? North-facing holds ice for weeks",
+        "Any fire mitigation done on the open-space boundary, and is it documented?",
+        "Furnace age; electrical panel brand and amp service"
+      ],
+      "addedAt": "2026-08-07"
     }
   ]
 }
