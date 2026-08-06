@@ -420,6 +420,7 @@ function initTabs() {
 
   initTabs();
   initTourPicker();
+  if (window.COSDrop) window.COSDrop.init(document.getElementById('dropzone'));
   $('#sort').addEventListener('change', renderHomes);
   $('#filter').addEventListener('change', renderHomes);
   $('#built').textContent = new Date().toLocaleDateString();

@@ -33,7 +33,7 @@ import re, sys, pathlib
 stamp = sys.argv[1]
 p = pathlib.Path("docs/index.html")
 html = p.read_text()
-new, n = re.subn(r'(href|src)="((?:styles\.css|app\.js|config\.js))\?v=[^"]*"',
+new, n = re.subn(r'(href|src)="((?:styles\.css|app\.js|dropzone\.js))\?v=[^"]*"',
                  lambda m: f'{m.group(1)}="{m.group(2)}?v={stamp}"', html)
 if n == 0:
     sys.exit("ERROR: found no ?v= asset refs to stamp in docs/index.html")

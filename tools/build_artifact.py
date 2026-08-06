@@ -270,6 +270,45 @@ footer{border-top:1px solid var(--line);margin-top:14px;padding:22px 0 34px;
   .mast h1{font-size:1.9rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* drop zone */
+.dzwrap{margin-top:14px}
+.dz{border:2px dashed var(--line);border-radius:12px;background:var(--surface);
+  padding:22px 18px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+.dz:hover{border-color:var(--accent)}
+.dz:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.dz.dz-over{border-color:var(--accent);background:var(--accent-soft);border-style:solid}
+.dz.dz-ok{border-color:var(--good);background:var(--good-soft)}
+.dz.dz-bad{border-color:var(--crit);background:var(--crit-soft)}
+.dz-icon{font-size:1.5rem;color:var(--accent);line-height:1}
+.dz-main{margin:7px 0 2px;font-size:.95rem;font-weight:600}
+.dz-sub{margin:0;font-size:.82rem;color:var(--ink-3)}
+.dz-mode{margin:9px 0 0;font-size:.78rem;color:var(--ink-2);line-height:1.5}
+.dz-mode code{background:var(--surface-2);padding:1px 5px;border-radius:4px;font-family:var(--mono);font-size:.9em}
+.dz-badge{display:inline-block;background:var(--surface-2);color:var(--ink-2);border-radius:999px;
+  padding:1px 8px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-right:5px}
+.dz-badge-live{background:var(--good-soft);color:var(--good)}
+.dz-flash{margin:10px 0 0;font-size:.83rem;color:var(--accent);background:var(--accent-soft);
+  border-radius:8px;padding:7px 11px}
+.dz-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:16px 0 8px}
+.dz-head h4{margin:0;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)}
+.dz-count{display:inline-block;background:var(--accent);color:var(--surface);border-radius:999px;
+  padding:0 6px;font-size:.72rem;margin-left:4px;letter-spacing:0;font-family:var(--mono)}
+.dz-actions{display:flex;gap:7px}
+.dz-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.dz-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:9px 11px}
+.dz-addr{display:block;font-size:.88rem;font-weight:600;font-family:var(--display)}
+.dz-url{font-size:.76rem;color:var(--ink-3);text-decoration:none}
+.dz-url:hover{color:var(--accent);text-decoration:underline}
+.dz-x{background:none;border:none;color:var(--ink-3);font-size:1.2rem;line-height:1;cursor:pointer;
+  padding:2px 6px;border-radius:6px;flex:0 0 auto}
+.dz-x:hover{color:var(--crit);background:var(--crit-soft)}
+.dz-fallback{width:100%;margin-top:10px;font-family:var(--mono);font-size:.78rem;resize:vertical;
+  background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}
+.btn{display:inline-block;background:var(--accent);color:var(--surface);border:1px solid var(--accent);
+  border-radius:8px;padding:7px 13px;font:inherit;font-size:.83rem;font-weight:600;cursor:pointer}
+.btn-ghost{background:transparent;color:var(--ink-2);border-color:var(--line)}
 """
 
 
@@ -490,6 +529,10 @@ for s in CHECKLIST:
 
 total_checks = sum(len(s["items"]) for s in CHECKLIST)
 
+# Inline the very same drop-zone module the local site uses, so behaviour can't drift. On this
+# page the /api/queue probe simply fails and it falls back to clipboard mode by itself.
+DROPZONE_JS = (ROOT / "docs" / "dropzone.js").read_text()
+
 HTML = f"""<title>Home Search — Colorado Springs</title>
 <style>{CSS}</style>
 
@@ -544,6 +587,15 @@ HTML = f"""<title>Home Search — Colorado Springs</title>
   </section>
 
   <section>
+    <div class="sec-head"><span class="eyebrow">Found one?</span></div>
+    <h2 style="font-family:var(--display);font-size:1.22rem;margin:0 0 4px">Add a house</h2>
+    <p class="lede">Drag the Zillow or Redfin link straight onto the box below and it gets queued.
+    This page can't score a house by itself &mdash; Zillow blocks browsers outright &mdash; so hit
+    <em>Copy request for Claude</em> and send it over. Everything else happens automatically from there.</p>
+    <div class="dzwrap" id="dropzone"></div>
+  </section>
+
+  <section>
     <div class="sec-head"><span class="eyebrow">The houses</span></div>
     <div class="homes">{"".join(card(h, i) for i, h in enumerate(ranked, 1))}</div>
   </section>
@@ -575,6 +627,10 @@ HTML = f"""<title>Home Search — Colorado Springs</title>
     estimates, not quotes, unless a card says otherwise. Photos and full listings live on Zillow.
   </footer>
 </div>
+
+<script>{DROPZONE_JS}
+COSDrop.init(document.getElementById('dropzone'));
+</script>
 """
 
 # Escape every non-ASCII character to a numeric HTML entity. We don't control the <head> the host
