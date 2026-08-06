@@ -75,6 +75,18 @@ following in one pass:
 **This is the core loop.** Vince pastes a Zillow (or Redfin) URL; you return a full analysis on
 the site. Accepts a URL, an address, or a screenshot + address.
 
+### Where listings arrive from
+
+Two paths, same handling:
+
+1. **Pasted straight into chat** — the usual case.
+2. **The drop zone**, on the Homes tab. When the site is served by `tools/serve.py`, dragging a
+   listing link onto it appends to **`data/queue.json`**. If Vince says "process the queue", read
+   that file, analyse every `pending` entry, then empty it (`{"pending": []}`) so nothing is
+   analysed twice. `data/queue.json` is gitignored — it's transient local state, never history.
+   Don't process the queue unless asked; entries sitting there are Vince's shortlist, not a
+   backlog you should clear on your own initiative.
+
 ### 1. Scrape it — with `proxy: "stealth"`
 
 ```
@@ -170,3 +182,19 @@ recoverable from git history.
 `deploy.sh` stamps `?v=<timestamp>` onto the CSS and JS refs in `docs/index.html`. Without it,
 family members who've already opened the page keep getting a cached `app.js` and quietly see the
 old site. Don't remove it, and don't hand-edit those version strings.
+
+## The drop zone
+
+`docs/dropzone.js` is shared verbatim between the Pages site and the artifact build, so behaviour
+can't drift. It parses an address out of the listing slug — which is genuinely ambiguous, hence the
+known-city list so "Colorado Springs" wins over splitting mid-city name.
+
+It degrades on purpose:
+- **Served by `tools/serve.py`** → POSTs to `/api/queue`, writes `data/queue.json`, badge reads
+  "Connected".
+- **Published page or Artifact** → `/api/queue` 404s, queue falls back to that browser's
+  `localStorage`, and a button copies a ready-to-send request.
+
+**Never imply the page can score a house itself.** It can't: Zillow blocks browser requests, and
+scoring needs the stealth proxy plus judgement against `criteria/`. The UI says so plainly, and it
+should stay that way.

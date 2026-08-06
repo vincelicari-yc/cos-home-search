@@ -15,12 +15,17 @@ into criteria, scores candidate homes against them, and publishes a page the who
 | `transcripts/` | Raw YouTube transcripts — **local only, gitignored** (see below) |
 | [`data/`](data/) | Canonical data: homes, anchor points, rubric weights, drive times |
 | [`docs/`](docs/) | The published static site. GitHub Pages serves from here. |
-| [`tools/`](tools/) | `intake.py` — geocodes an address and routes drive time from the anchor |
+| [`tools/`](tools/) | `intake.py` geocodes + routes drive time · `serve.py` local server with the drop-queue endpoint · `build_artifact.py` builds the shareable single-file page |
 | `research/` | Per-home deep-dive notes |
 
 ## Day-to-day
 
-**Add a home.** Give Claude a Zillow or Redfin link, or a screenshot plus the address.
+**Add a home.** Either paste Claude a Zillow/Redfin link, or **drag the link onto the drop zone**
+on the Homes tab. Served locally, dropped links land in `data/queue.json` and you just say
+"process the queue". On the shared page they queue in the browser and one button copies the request.
+
+The page deliberately can't score a house on its own — Zillow blocks browser requests, and scoring
+needs the stealth proxy plus the criteria files. The zone collects; Claude analyses.
 
 **Check drive time yourself:**
 

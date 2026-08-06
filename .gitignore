@@ -24,3 +24,6 @@ node_modules/
 # Generated artifact build — regenerate with ./tools/build_artifact.py
 build/
 docs/_preview.html
+
+# Drop-zone queue is transient local state, not shared history.
+data/queue.json
