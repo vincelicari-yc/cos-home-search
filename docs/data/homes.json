@@ -708,6 +708,216 @@
         "Drive the route to YWAM at 8am — 8.4 min free-flow is tight"
       ],
       "addedAt": "2026-08-06"
+    },
+    {
+      "id": "1526-chutney-ct",
+      "address": "1526 Chutney Ct, Colorado Springs, CO 80907",
+      "status": "active",
+      "rejectedReason": null,
+      "verdict": "The strongest all-round house so far. $544,000 for 4 beds and 4 baths, 2,690 sqft, built 1997 — new enough to sit past the worst era traps (polybutylene pipe, aluminium wiring, clay sewer), with central air, municipal water, no HOA, a minimal-risk flood zone, and 5.5 minutes to YWAM. The headline is the price history: it SOLD for $610,000 in June 2022 and is now asking $544,000 after three cuts in 83 days. That's genuine leverage — but ask why before you fall for it.",
+      "listing": {
+        "price": 544000,
+        "beds": 4,
+        "baths": 4,
+        "sqft": 2690,
+        "lotSqft": 9073,
+        "yearBuilt": 1997,
+        "style": "2-story",
+        "pricePerSqft": 202,
+        "hoaMonthly": 0,
+        "secondHoaMonthly": null,
+        "metroDistrict": null,
+        "annualTax": 1981,
+        "taxAssessedValue": 572162,
+        "daysOnMarket": 83,
+        "roofMaterial": "Composite Shingle (age not stated)",
+        "foundationRepair": null,
+        "basement": "Full, partially finished — bedroom, walk-in closet and 3/4 bath",
+        "heating": "Forced Air, Natural Gas",
+        "cooling": "Central Air + ceiling fans",
+        "water": "Municipal (Colorado Springs Utilities)",
+        "floodZone": "FEMA Zone X (unshaded) — minimal-risk flood area",
+        "listingTerms": "Cash, Conventional, FHA, VA Loan — all accepted",
+        "walkScore": 28,
+        "mlsNumber": "8461877",
+        "zillowUrl": "https://www.zillow.com/homedetails/1526-Chutney-Ct-Colorado-Springs-CO-80907/13657998_zpid/",
+        "redfinUrl": null,
+        "sourceOfTruth": "scraped",
+        "fetchedAt": "2026-08-06"
+      },
+      "priceHistory": [
+        {
+          "date": "2026-07-22",
+          "event": "Price cut (3rd)",
+          "price": 544000
+        },
+        {
+          "date": "2026-06-23",
+          "event": "Price cut (2nd)",
+          "price": 554000
+        },
+        {
+          "date": "2026-05-15",
+          "event": "Listed for sale",
+          "price": 559000
+        },
+        {
+          "date": "2022-06-01",
+          "event": "SOLD — $66k above today's ask",
+          "price": 610000
+        },
+        {
+          "date": "2022-04-07",
+          "event": "Listed for sale",
+          "price": 575000
+        }
+      ],
+      "geo": {
+        "lat": 38.892104,
+        "lon": -104.855764,
+        "neighborhood": "West side, near Mesa / Kissing Camels",
+        "driveMinutesToAnchor": 5.5,
+        "driveMilesToAnchor": 2.0,
+        "routedAt": "2026-08-06"
+      },
+      "schools": {
+        "district": null,
+        "elementary": null,
+        "middle": null,
+        "high": null
+      },
+      "scores": {
+        "foundation": {
+          "score": null,
+          "why": "No structural report offered and the basement is partly finished, so evidence is covered. Not in a named soil hot spot, and 1997 is late enough that T04's 'newer builds with engineered foundations designed for Front Range clay' likely applies — but that's inference, not verification, so null [T04]"
+        },
+        "wildfire": {
+          "score": 4,
+          "why": "West of I-25 but short of the foothills interface, and outside every wildland-urban interface neighbourhood the videos name. Should price normally, but the quote is still required [T04][T06]"
+        },
+        "water": {
+          "score": 4,
+          "why": "FEMA Zone X UNSHADED, minimal-risk — the clean end of the scale. Docked only because the basement is partly finished and grading is unverified [T04]"
+        },
+        "roof": {
+          "score": 2,
+          "why": "Composite shingle with no age stated on a 1997 house — it could be original at 29 years, which is well past life in a 5.5-hail-day-a-year city. Not Class 4 [T04]"
+        },
+        "systems": {
+          "score": 4,
+          "why": "Best systems profile we've seen. 1997 is PAST polybutylene (1978-95), past aluminium branch wiring (1965-75), and past clay/cast-iron sewer (pre-1980). Central air present, unlike Catalpa. Ages still unstated [T04]"
+        },
+        "layout": {
+          "score": 5,
+          "why": "4 beds and 4 baths — most bathrooms of any candidate. Upstairs primary with a 5-piece en-suite, two more beds and a full bath on that floor, then a basement bedroom with walk-in closet and 3/4 bath for guests. Deck and fire pit [T08]"
+        },
+        "value": {
+          "score": 5,
+          "why": "$544k against the county's actual value of $572,162, and $66k BELOW its own June 2022 sale price of $610,000 after three cuts in 83 days. Leaves $56k under our ceiling [T05][T08]"
+        },
+        "location": {
+          "score": 4,
+          "why": "5.5 min to YWAM, second closest we've found. Listing cites scenic views and nearby trails. Docked for Walk Score 28 and unknown driveway/deck orientation [T07]"
+        },
+        "carrying": {
+          "score": 5,
+          "why": "No HOA stated, no metro district stated, municipal water on one CSU bill, tax only $1,981/yr. Confirm the absences rather than assuming [T07][T06]"
+        },
+        "radon": {
+          "score": null,
+          "why": "No test mentioned; full basement with a finished bedroom. El Paso County is EPA Zone 1 [BASE]"
+        },
+        "resale": {
+          "score": 3,
+          "why": "Built-out west-central with no new construction capping resale, and FHA/VA eligible [T08]. But this house is down about 11% from its 2022 sale price, so the area has not been appreciating — don't count on that reversing"
+        }
+      },
+      "flags": {
+        "below-2022": {
+          "severity": "warning",
+          "text": "It sold for $610,000 in June 2022 and is asking $544,000 now — $66,000 less than the last owner paid, after three price cuts in 83 days. That's real negotiating leverage, and also a question: ask the agent directly whether a contract fell through on inspection. Citywide prices did fall about 5% in 2025, so some of this is just the market correcting, but don't assume that's all of it."
+        },
+        "roof-age": {
+          "severity": "warning",
+          "text": "The roof is composite shingle with no age given. On a 1997 house it could still be the original at 29 years old, which is well past its life here. Get the age and the permit before the inspection deadline, and budget $11,000-25,000 if it's due."
+        },
+        "stale-listing": {
+          "severity": "warning",
+          "text": "83 days on market with three cuts. Worth asking what happened — contract fallout is at an all-time high right now, usually because a seller wouldn't fix what an inspection turned up."
+        },
+        "insurance": {
+          "severity": "warning",
+          "text": "Still get a wildfire insurance quote for this exact address. It's west of I-25 but short of the foothills, so it should price normally — confirm rather than assume."
+        },
+        "walk": {
+          "severity": "note",
+          "text": "Walk Score 28. You'll drive for everything, same as the others."
+        },
+        "flood-clean": {
+          "severity": "note",
+          "text": "Flood risk is clean — FEMA Zone X unshaded, minimal-risk. One of the two big pre-tour checks already passes."
+        },
+        "era": {
+          "severity": "note",
+          "text": "Built 1997, the newest house we've looked at, and that matters more than it sounds. It lands past polybutylene pipe (1978-95), past aluminium branch wiring (1965-75), and past clay sewer lines (pre-1980) — the three era traps that make older Colorado Springs houses expensive. It also has central air, which Catalpa doesn't."
+        },
+        "value": {
+          "severity": "note",
+          "text": "Priced $28,162 below the county's own valuation of $572,162, and it leaves about $56,000 of room under your $600k ceiling."
+        },
+        "layout": {
+          "severity": "note",
+          "text": "4 bedrooms and 4 bathrooms, with an upstairs primary suite plus a basement bedroom and 3/4 bath — good for guests or hosting."
+        },
+        "verify-hoa": {
+          "severity": "note",
+          "text": "The listing states no HOA and no metro district. That usually means there genuinely isn't one, but confirm it — a metro district doesn't show up as dues and quietly raises the tax bill."
+        }
+      },
+      "monthly": {
+        "principalInterest": 2750,
+        "propertyTax": 165,
+        "insuranceEstimate": 350,
+        "insuranceIsQuote": false,
+        "hoa": 0,
+        "metroDistrict": 0,
+        "total": 3265,
+        "note": "Assumes 20% down ($435,200 loan) at 6.5% over 30 years — confirm the rate with a lender. Insurance is an ESTIMATE, not a quote. This address is short of the foothills interface so it should price normally, but get the real number before the deadline."
+      },
+      "offer": {
+        "suggested": 515000,
+        "rationale": "The seller has cut three times in 83 days and is already asking $66,000 less than they paid in 2022 and $28,000 under the county's actual value. That is a motivated seller, not a hopeful one. $515,000 is about 5% under ask, which is well inside the citywide gap between average list ($618k) and average sold ($540k). Hold room to move to roughly $530,000 if the roof turns out to be recent and the insurance quote comes back normal.",
+        "asks": [
+          "Roof age, material and permit in writing — if it's due, a Class 4 impact-resistant replacement rather than a like-for-like [T04]",
+          "A straight answer on why it's below the 2022 sale price, and whether a prior contract fell through on inspection [T05]",
+          "Sewer scope — cheap insurance even on a 1997 build [T04]",
+          "Seller concessions toward closing costs, commonly $8,000-10,000 in this market [T05]",
+          "A rate buydown instead of a further price cut if they resist — often saves more per month [T05]"
+        ],
+        "reserveNeeded": 25000
+      },
+      "photos": [
+        {
+          "url": "https://photos.zillowstatic.com/fp/c3da0fd79f747ee56bca0f495a60c2a8-cc_ft_960.jpg",
+          "caption": "1526 Chutney Ct — front",
+          "credit": "Zillow listing"
+        }
+      ],
+      "openQuestions": [
+        "WHY is it $66,000 below its 2022 sale price? Did a contract fall through on inspection?",
+        "Roof age, material and permit — 1997 could still mean the original roof",
+        "Insurance quote for this exact address",
+        "Confirm there is genuinely no HOA and no metro district on this parcel",
+        "Radon test result",
+        "Supply pipe material — 1997 should be PEX or copper, confirm it",
+        "Sewer lateral material and condition — scope it",
+        "Any structural or foundation history? The basement is partly finished",
+        "Furnace and air-conditioner age",
+        "Which way does the driveway face? North-facing holds ice for weeks",
+        "How does the ground slope, and where do the downspouts terminate?",
+        "Drive the route to YWAM at 8am — 5.5 min free-flow should hold up well, but confirm"
+      ],
+      "addedAt": "2026-08-06"
     }
   ]
 }
