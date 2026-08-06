@@ -20,3 +20,7 @@ __pycache__/
 .venv/
 venv/
 node_modules/
+
+# Generated artifact build — regenerate with ./tools/build_artifact.py
+build/
+docs/_preview.html
