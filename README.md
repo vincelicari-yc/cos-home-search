@@ -15,7 +15,7 @@ into criteria, scores candidate homes against them, and publishes a page the who
 | `transcripts/` | Raw YouTube transcripts — **local only, gitignored** (see below) |
 | [`data/`](data/) | Canonical data: homes, anchor points, rubric weights, drive times |
 | [`docs/`](docs/) | The published static site. GitHub Pages serves from here. |
-| [`tools/`](tools/) | `intake.py` for geocoding + drive times; `apps-script/` for shared ratings |
+| [`tools/`](tools/) | `intake.py` — geocodes an address and routes drive time from the anchor |
 | `research/` | Per-home deep-dive notes |
 
 ## Day-to-day
@@ -56,16 +56,16 @@ gets published, with each item tagged to the transcript it came from (`[T03]`).
 This repo is public and so is the Pages site. That's deliberate — GitHub Pages requires a paid
 plan to serve a private repo — but be clear-eyed about what it means:
 
-- **Anyone with the URL can read the page**, including home addresses, prices, our notes, and
-  family ratings. There's no login. The URL being unguessable is the only barrier.
+- **Anyone with the URL can read the page**, including home addresses, prices, and our notes
+  and offer strategy. There's no login. The URL being unguessable is the only barrier.
 - **Search engines are blocked by `<meta name="robots" content="noindex, nofollow">`** on the
   page. That meta tag is the mechanism actually doing the work — it's what tells Google not to
   index. There's also a `docs/robots.txt`, but be aware it's mostly belt-and-suspenders: for a
   project page at `username.github.io/repo/`, crawlers only honor `robots.txt` at the *domain*
   root, which this repo doesn't control. Combined with having zero inbound links anywhere, the
   realistic chance of this page surfacing in a search result is nil.
-- **First names only, and no money.** Never commit last names, phone numbers, pre-approval
-  letters, account numbers, or anything financial. `.gitignore` blocks some obvious filename
+- **No money, no identities.** Never commit last names, phone numbers, pre-approval letters,
+  account numbers, or anything financial. `.gitignore` blocks some obvious filename
   patterns, but that's a safety net, not a substitute for care.
 
 If any of that stops feeling acceptable, the fix is a private repo plus a different host
